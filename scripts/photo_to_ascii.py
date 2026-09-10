@@ -14,7 +14,8 @@ CHARS = " .,:;irsXA253hMHGS#9B&@"
 def main() -> None:
     source, destination = map(Path, sys.argv[1:3])
     image = Image.open(source).convert("L")
-    image = ImageOps.fit(image, (62, 34), method=Image.Resampling.LANCZOS, centering=(0.5, 0.42))
+    image = ImageOps.fit(image, (62, 34), method=Image.Resampling.LANCZOS, centering=(0.56, 0.42))
+    image = ImageOps.autocontrast(image, cutoff=2)
     pixels = list(image.getdata())
     rows = []
     for offset in range(0, len(pixels), image.width):

@@ -74,7 +74,6 @@ function card(theme, palette) {
   <text class="mono ascii" xml:space="preserve">${ascii}</text>
   <rect x="30" y="90" width="460" height="420" fill="url(#scanlines)"/>
   <rect class="scan" x="30" y="90" width="460" height="5" fill="${p.primary}" opacity=".8"/>
-  <g class="glitch" opacity=".55"><rect x="30" y="215" width="460" height="2" fill="${p.secondary}"/><rect x="30" y="388" width="460" height="3" fill="${p.primary}"/></g>
   <text x="48" y="116" class="mono muted">PHOTO.SIGNAL // ASCII DENSITY CHANNEL</text>
   <text x="48" y="492" class="mono muted">glitch channel stable // identity confirmed</text>
 </g>
