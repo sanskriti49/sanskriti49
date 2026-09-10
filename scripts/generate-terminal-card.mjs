@@ -1,10 +1,15 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+import { execFileSync } from "node:child_process";
 import { resolve } from "node:path";
 
 const photoPath = resolve(process.env.PROFILE_PHOTO || "assets/profile-photo.jpg");
 const outputDir = resolve(process.env.TERMINAL_OUTPUT_DIR || "assets");
-const photo = readFileSync(photoPath).toString("base64");
-const image = `data:image/jpeg;base64,${photo}`;
+const asciiPath = resolve("assets/profile-ascii.txt");
+execFileSync(process.env.PYTHON || "python", ["scripts/photo_to_ascii.py", photoPath, asciiPath]);
+const ascii = readFileSync(asciiPath, "utf8")
+  .split("\n")
+  .map((line, index) => `<tspan x="48" y="${150 + index * 10}">${line.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")}</tspan>`)
+  .join("");
 
 const palettes = {
   dark: {
@@ -39,12 +44,13 @@ function card(theme, palette) {
 <defs>
   <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${p.background}"/><stop offset="1" stop-color="${p.panel}"/></linearGradient>
   <linearGradient id="photoTint" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${p.secondary}"/><stop offset="1" stop-color="${p.primary}"/></linearGradient>
+  <linearGradient id="asciiTint" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${p.secondary}"/><stop offset="1" stop-color="${p.primary}"/></linearGradient>
   <pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="${p.secondary}" opacity=".07"/></pattern>
-  <filter id="duotone"><feColorMatrix type="matrix" values="0.2 0.4 0.1 0 0  0.2 0.4 0.1 0 0.18  0.2 0.4 0.1 0 0.2  0 0 0 1 0"/></filter>
   <clipPath id="photoClip"><rect x="30" y="90" width="460" height="420" rx="12"/></clipPath>
   <style>
     .mono { font-family: "Courier New", Consolas, monospace; }
     .key { fill: ${p.primary}; font-size: 15px; font-weight: bold; }
+    .ascii { fill: url(#asciiTint); font-size: 8px; letter-spacing: 1px; }
     .value { fill: ${p.text}; font-size: 15px; }
     .label { fill: ${p.secondary}; font-size: 11px; letter-spacing: 2px; }
     .muted { fill: ${p.muted}; font-size: 11px; letter-spacing: 1px; }
@@ -64,11 +70,12 @@ function card(theme, palette) {
 <circle cx="1060" cy="20" r="4" fill="#F87171" class="blink"/><text x="1072" y="24" class="mono muted">SCANNING</text>
 <text x="30" y="48" class="mono label">VISUAL.MAP</text><text x="524" y="48" class="mono label">SYSTEM.INFO</text>
 <g clip-path="url(#photoClip)">
-  <image href="${image}" x="30" y="90" width="460" height="420" preserveAspectRatio="xMidYMid slice" filter="url(#duotone)" opacity="${p.photoOpacity}"/>
+  <rect x="30" y="90" width="460" height="420" fill="${p.background}"/>
+  <text class="mono ascii" xml:space="preserve">${ascii}</text>
   <rect x="30" y="90" width="460" height="420" fill="url(#scanlines)"/>
   <rect class="scan" x="30" y="90" width="460" height="5" fill="${p.primary}" opacity=".8"/>
   <g class="glitch" opacity=".55"><rect x="30" y="215" width="460" height="2" fill="${p.secondary}"/><rect x="30" y="388" width="460" height="3" fill="${p.primary}"/></g>
-  <text x="48" y="116" class="mono muted">PHOTO.SIGNAL // DUOTONE CHANNEL</text>
+  <text x="48" y="116" class="mono muted">PHOTO.SIGNAL // ASCII DENSITY CHANNEL</text>
   <text x="48" y="492" class="mono muted">glitch channel stable // identity confirmed</text>
 </g>
 <g class="mono">
