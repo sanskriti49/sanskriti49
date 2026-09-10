@@ -55,22 +55,25 @@ def fetch_calendar(login: str, token: str) -> dict:
     return result["data"]["user"]["contributionsCollection"]["contributionCalendar"]
 
 
-def cell_markup(weeks: list[dict]) -> tuple[str, int]:
+def cell_markup(weeks: list[dict]) -> tuple[str, int, tuple[int, int]]:
     cells: list[str] = []
     peak = 0
+    last_point = (1060, 196)
     for column, week in enumerate(weeks):
         for row, day in enumerate(week["contributionDays"]):
             count = int(day["contributionCount"])
             peak = max(peak, count)
             x = 140 + column * 18
             y = 88 + row * 18
+            if count:
+                last_point = (x + 7, y + 7)
             label = f"{count} contribution{'s' if count != 1 else ''} on {day['date']}"
             cells.append(
                 f'<rect x="{x}" y="{y}" width="14" height="14" rx="2.5" '
                 f'fill="{COLORS[day["contributionLevel"]]}" stroke="#1E293B" '
                 f'stroke-width="0.75"><title>{html.escape(label)}</title></rect>'
             )
-    return "\n  ".join(cells), peak
+    return "\n  ".join(cells), peak, last_point
 
 
 def month_labels(weeks: list[dict]) -> str:
@@ -88,7 +91,7 @@ def month_labels(weeks: list[dict]) -> str:
 
 def render(calendar: dict, login: str) -> str:
     weeks = calendar["weeks"][-53:]
-    cells, peak = cell_markup(weeks)
+    cells, peak, last_point = cell_markup(weeks)
     total = calendar["totalContributions"]
     generated = date.today().isoformat()
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="340" viewBox="0 0 1180 340" role="img" aria-labelledby="title desc">
@@ -123,6 +126,11 @@ def render(calendar: dict, login: str) -> str:
 <text x="128" y="116.5" class="axis-label" text-anchor="end">MON</text><text x="128" y="152.5" class="axis-label" text-anchor="end">WED</text><text x="128" y="188.5" class="axis-label" text-anchor="end">FRI</text>
 <g class="cell">{cells}</g>
 <rect class="scan" x="138" y="84" width="936" height="3" fill="url(#scan)" opacity=".6"/>
+<g transform="translate({last_point[0]} {last_point[1]})" filter="url(#glow)">
+  <circle r="13" fill="none" stroke="#22D3EE" opacity=".75"><animate attributeName="r" values="8;20;8" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".9;0;.9" dur="2.4s" repeatCount="indefinite"/></circle>
+  <circle r="4" fill="#FACC15" stroke="#E0F2FE" stroke-width="1"/>
+  <path d="M0 11l-5 15 5-3 5 3z" fill="#38BDF8"><animateTransform attributeName="transform" type="translate" values="0 0;0 3;0 0" dur="1s" repeatCount="indefinite"/></path>
+</g>
 <g class="meta"><text x="140" y="244">POWER NODES: LOW</text><rect x="255" y="234" width="12" height="12" rx="2" fill="#0F172A"/><rect x="273" y="234" width="12" height="12" rx="2" fill="#166534"/><rect x="291" y="234" width="12" height="12" rx="2" fill="#22C55E"/><rect x="309" y="234" width="12" height="12" rx="2" fill="#A7F3D0"/><text x="330" y="244">OVERDRIVE</text>
 <text x="725" y="320">GITHUB CONTRIBUTION GRID // SECTOR: SANSKRITI49</text></g>
 </svg>
