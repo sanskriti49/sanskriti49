@@ -3,7 +3,7 @@
 <picture>
   <source media="(prefers-color-scheme: light)" srcset="./assets/terminal-card-light.svg?v=20260910" />
   <source media="(prefers-color-scheme: dark)" srcset="./assets/terminal-card-dark.svg?v=20260910" />
-  <img src="./assets/terminal-card-dark.svg?v=20260910" alt="Sanskriti's hacker terminal profile card" width="100%" />
+  <img src="./assets/terminal-card-dark.svg?v=20260910" alt="Sanskriti's ASCII hacker terminal profile card" width="100%" />
 </picture>
 
 <img src="./assets/profile-radar.svg" alt="Sanskriti Gupta animated profile card" width="100%" />
