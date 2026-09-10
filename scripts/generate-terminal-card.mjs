@@ -29,8 +29,8 @@ function buildDarkSvg() {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="586" viewBox="0 0 1180 586">
 <defs>
   <linearGradient id="asciiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-    <stop offset="0%" stop-color="#9598cb"/>
-    <stop offset="100%" stop-color="#a5a8db"/>
+    <stop offset="0%" stop-color="#BAE6FD"/>
+    <stop offset="100%" stop-color="#7DD3FC"/>
   </linearGradient>
   <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
     <stop offset="0%" stop-color="#22C55E"/>
@@ -86,7 +86,7 @@ function buildDarkSvg() {
   <clipPath id="lc20"><rect x="500" y="468.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="3.05s" fill="freeze"/></rect></clipPath>
   <clipPath id="lc21"><rect x="500" y="490.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="3.17s" fill="freeze"/></rect></clipPath>
   <style>
-    .ascii  { font-family: "SFMono-Regular", "JetBrains Mono", "Fira Code", Consolas, "DejaVu Sans Mono", monospace; font-size: 8px; fill: #9598cb; letter-spacing: -0.2px; }
+    .ascii  { font-family: "SFMono-Regular", "JetBrains Mono", "Fira Code", Consolas, "DejaVu Sans Mono", monospace; font-size: 8px; fill: #BAE6FD; letter-spacing: -0.2px; }
     .key    { font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #4ADE80; font-weight: bold; }
     .value  { font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #FFFFFF; font-weight: 500; }
     .cc     { font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #1E3A2F; }
@@ -211,7 +211,7 @@ function buildLightSvg() {
   <clipPath id="lc20"><rect x="500" y="468.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="3.05s" fill="freeze"/></rect></clipPath>
   <clipPath id="lc21"><rect x="500" y="490.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="3.17s" fill="freeze"/></rect></clipPath>
   <style>
-    .ascii  { font-family: "SFMono-Regular", "JetBrains Mono", "Fira Code", Consolas, "DejaVu Sans Mono", monospace; font-size: 8px; fill: #4F46E5; letter-spacing: -0.2px; }
+    .ascii  { font-family: "SFMono-Regular", "JetBrains Mono", "Fira Code", Consolas, "DejaVu Sans Mono", monospace; font-size: 8px; fill: #0284C7; letter-spacing: -0.2px; }
     .key    { font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #0D9488; font-weight: bold; }
     .value  { font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #0F172A; font-weight: 500; }
     .cc     { font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #CBD5E1; }

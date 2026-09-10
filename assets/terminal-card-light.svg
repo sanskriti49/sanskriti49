@@ -47,7 +47,7 @@
   <clipPath id="lc20"><rect x="500" y="468.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="3.05s" fill="freeze"/></rect></clipPath>
   <clipPath id="lc21"><rect x="500" y="490.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="3.17s" fill="freeze"/></rect></clipPath>
   <style>
-    .ascii  { font-family: "SFMono-Regular", "JetBrains Mono", "Fira Code", Consolas, "DejaVu Sans Mono", monospace; font-size: 8px; fill: #4F46E5; letter-spacing: -0.2px; }
+    .ascii  { font-family: "SFMono-Regular", "JetBrains Mono", "Fira Code", Consolas, "DejaVu Sans Mono", monospace; font-size: 8px; fill: #0284C7; letter-spacing: -0.2px; }
     .key    { font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #0D9488; font-weight: bold; }
     .value  { font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #0F172A; font-weight: 500; }
     .cc     { font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #CBD5E1; }
