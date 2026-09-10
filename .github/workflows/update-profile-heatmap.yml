@@ -16,6 +16,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.x"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Generate terminal profile card
+        env:
+          PROFILE_PHOTO: assets/profile-photo.jpg
+          TERMINAL_OUTPUT_DIR: assets
+        run: node scripts/generate-terminal-card.mjs
       - name: Generate contribution HUD
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -25,6 +33,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/contribution-heatmap.svg README.md
+          git add assets/contribution-heatmap.svg assets/terminal-card-dark.svg assets/terminal-card-light.svg README.md
           git diff --cached --quiet || git commit -m "chore: refresh profile contribution heatmap"
           git push
