@@ -1,39 +1,60 @@
 <div align="center">
 
-<img src="./assets/profile-radar.svg" alt="Sanskriti's developer radar and system information" width="100%" />
+<img src="./assets/profile-radar.svg" alt="Sanskriti Gupta developer profile console" width="100%" />
 
 <br />
 
 [![GitHub](https://img.shields.io/badge/GitHub-sanskriti49-0A0F14?style=for-the-badge&logo=github&logoColor=7DFFB5)](https://github.com/sanskriti49)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-sanskriti49-0A0F14?style=for-the-badge&logo=linkedin&logoColor=7DFFB5)](https://linkedin.com/in/sanskriti49)
 [![Portfolio](https://img.shields.io/badge/Portfolio-live-0A0F14?style=for-the-badge&logo=googlechrome&logoColor=7DFFB5)](https://sanskriti49.github.io/my_portfolio/)
 
 </div>
 
 ## `~/profile/about`
 
-I like turning rough ideas into useful, working products: responsive React interfaces, practical Node/Express APIs, and Python models that make real-world text easier to understand.
+I'm Sanskriti Gupta, a Computer Science undergraduate at VIT Bhopal and a software engineer who enjoys building reliable systems behind polished product experiences. I work across frontend, backend, data, and cloud infrastructure, with a focus on turning complex workflows into clear, useful software.
 
-**Current mission:** improve full-stack architecture, sharpen UI details, and keep learning by shipping.
+**Currently:** strengthening distributed systems, real-time APIs, cloud-native architecture, and high-quality product interfaces.
 
-## `~/profile/toolchain`
+## `~/profile/expertise`
 
 ```text
-FRONTEND  :: JavaScript  React  Vite  Tailwind CSS
-BACKEND   :: Node.js  Express  Flask
-DATA      :: Python  scikit-learn  MongoDB
-TOOLS     :: Git  REST APIs  Leaflet  npm
+LANGUAGES     :: Java · JavaScript (ES6+) · TypeScript · Python · SQL · HTML5 · CSS3
+FRONTEND      :: React.js · Next.js · Redux Toolkit · Zustand · Tailwind CSS · GSAP
+BACKEND       :: Node.js · Express.js · REST APIs · WebSockets / Socket.IO · JWT · OAuth 2.0
+DATA          :: PostgreSQL · MongoDB · Redis · spatial indexing · connection pooling
+CLOUD / DEVOPS :: AWS EC2 · AWS S3 · Docker · Terraform · GitHub Actions · Linux · Postman
+FOUNDATIONS   :: Data Structures & Algorithms · OOP · DBMS · Operating Systems
 ```
 
-## `~/profile/featured-projects`
+## `~/profile/experience`
 
-| Signal | Project | Readout |
-| --- | --- | --- |
-| `01` | [Udaan Scholarship Finder](https://github.com/sanskriti49/udaan-scholarship-finder) | Full-stack scholarship discovery app with React, Node/Express, authentication, eligibility flows, resources, and application guidance. |
-| `02` | [Weather App](https://github.com/sanskriti49/weather-app) | React weather dashboard with protected views, city search, three-day summaries, and an interactive Leaflet map. |
-| `03` | [Spam Detection](https://github.com/sanskriti49/spam-detection) | SMS classifier using TF-IDF vectorization and Multinomial Naive Bayes to identify spam and ham. |
-| `04` | [Sentiment Analysis](https://github.com/sanskriti49/Sentimental-Analysis) | Flask web UI and API for predicting positive or negative sentiment in restaurant reviews. |
-| `05` | [React To-Do List](https://github.com/sanskriti49/todo-list-using-react) | Responsive task manager with add, edit, complete, and delete flows. [Live demo](https://sanskriti49.github.io/todo-list-using-react/) |
-| `06` | [Shopping List API](https://github.com/sanskriti49/vercel-shopping-list-app) | Express CRUD API for product listings, deployed on Vercel. [Deployment](https://vercel-shopping-list-app.vercel.app/) |
+**Software Engineer Intern · GeekyAnts**
+Engineered role-based microservices and REST APIs with Node.js, Express.js, and PostgreSQL; built real-time Socket.IO channels and secure payment workflows with signature verification.
+
+## `~/profile/selected-work`
+
+### [Flux: Enterprise Agile Workspace](https://github.com/sanskriti49/agile_task_manager)
+
+`Node.js` `PostgreSQL` `MongoDB` `Redis` `AWS S3` `Docker` `Terraform`
+
+- Designed asynchronous multipart media uploads with AWS S3 presigned URLs.
+- Combined PostgreSQL and MongoDB persistence with DFS cycle detection for task dependencies.
+- Built distributed Socket.IO state sync with Redis Pub/Sub and sprint analytics with DORA metrics.
+
+### [TaskGenie: On-Demand Hyperlocal Marketplace](https://github.com/sanskriti49/service-provider) · [Live product](https://taskgenieee.vercel.app/)
+
+`Node.js` `Express.js` `PostgreSQL` `React.js` `Redis` `Razorpay` `Tailwind CSS`
+
+- Built location-aware discovery using PostgreSQL GiST spatial indexing and Haversine scoring, reducing query latency by 80%.
+- Engineered rolling availability slots with conflict detection, lead-time buffers, and a secure OTP completion handshake.
+- Integrated KYC verification and Razorpay webhook reconciliation with HMAC validation and dispute refunds.
+
+### [Udaan Scholarship Finder](https://github.com/sanskriti49/udaan-scholarship-finder)
+
+`React` `Node.js` `Express` `MongoDB` `Google OAuth`
+
+A full-stack scholarship discovery platform with authentication, eligibility flows, resources, and application guidance.
 
 ## `~/profile/activity`
 
@@ -45,15 +66,15 @@ TOOLS     :: Git  REST APIs  Leaflet  npm
 
 ```text
 CONTRIBUTION GRID :: generated from GitHub's live contribution calendar
-RADAR STATUS     :: frontend online / backend online / ML scanning
+RADAR STATUS     :: frontend online / backend online / cloud systems scanning
 ```
 
-## `~/profile/side-quests`
+## `~/profile/achievements`
 
-[Simon Game](https://github.com/sanskriti49/Simon-Game) · [TODO List](https://github.com/sanskriti49/TODO-List) · [GDGC Task Round Backend](https://github.com/sanskriti49/gdgc_task_round_backend) · [Portfolio](https://github.com/sanskriti49/my-portfolio)
+`AWS Certified Cloud Practitioner` · `TCS CodeVita Top 3% globally` · `GDG technical mentor`
 
 <div align="center">
 
-`Thanks for visiting. Explore the signal, open a repository, and say hello through GitHub.`
+`Building systems that are useful, scalable, and a little delightful.`
 
 </div>

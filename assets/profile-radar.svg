@@ -1,57 +1,83 @@
-<svg width="1200" height="360" viewBox="0 0 1200 360" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">Sanskriti's developer radar</title>
-  <desc id="desc">A green terminal-style radar showing frontend, backend, and applied machine learning areas.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="586" viewBox="0 0 1180 586" role="img" aria-labelledby="title desc">
+  <title id="title">Sanskriti Gupta developer profile console</title>
+  <desc id="desc">A terminal-style visual map and system information panel for Sanskriti Gupta.</desc>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="360" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#050B12"/>
-      <stop offset="1" stop-color="#07151A"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1180" y2="586" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07111B"/><stop offset="1" stop-color="#030812"/>
     </linearGradient>
-    <radialGradient id="glow">
-      <stop stop-color="#39FF88" stop-opacity=".32"/>
-      <stop offset="1" stop-color="#39FF88" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="4" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
-      <path d="M24 0H0V24" stroke="#123C3A" stroke-opacity=".5"/>
-    </pattern>
+    <linearGradient id="border" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#22C55E"/><stop offset=".5" stop-color="#10B981"/><stop offset="1" stop-color="#38BDF8"/>
+    </linearGradient>
+    <linearGradient id="text" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#38BDF8"><animate attributeName="stop-color" values="#38BDF8;#22D3EE;#60A5FA;#38BDF8" dur="8s" repeatCount="indefinite"/></stop>
+      <stop offset="1" stop-color="#22D3EE"><animate attributeName="stop-color" values="#22D3EE;#60A5FA;#38BDF8;#22D3EE" dur="8s" repeatCount="indefinite"/></stop>
+    </linearGradient>
+    <pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#7DD3FC" opacity=".04"/></pattern>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <style>
+      .mono { font-family: "Courier New", Consolas, monospace; }
+      .ascii { font-size: 8px; fill: url(#text); letter-spacing: 1px; }
+      .key { font-size: 15px; fill: #4ADE80; font-weight: bold; }
+      .value { font-size: 15px; fill: #F8FAFC; }
+      .muted { font-size: 12px; fill: #64748B; letter-spacing: 1px; }
+      .label { font-size: 11px; fill: #38BDF8; letter-spacing: 2px; }
+      .heading { font-size: 17px; fill: #22C55E; font-weight: bold; }
+      .blink { animation: blink 1.1s infinite; }
+      @keyframes blink { 0%, 45% { opacity: 1; } 50%, 100% { opacity: .15; } }
+    </style>
   </defs>
-  <rect x="2" y="2" width="1196" height="356" rx="18" fill="url(#bg)" stroke="#19D886" stroke-width="2"/>
-  <rect x="20" y="20" width="1160" height="320" rx="12" fill="url(#grid)" stroke="#0B7661"/>
-  <circle cx="45" cy="45" r="6" fill="#FF5F57"/>
-  <circle cx="65" cy="45" r="6" fill="#FFBD2E"/>
-  <circle cx="85" cy="45" r="6" fill="#28C840"/>
-  <text x="110" y="50" fill="#7AF5B2" font-family="monospace" font-size="14">sanskriti@github: ~/profile --live</text>
-  <line x1="42" y1="70" x2="1158" y2="70" stroke="#145C4F"/>
+  <rect width="1180" height="586" rx="18" fill="url(#bg)"/><rect width="1180" height="586" rx="18" fill="url(#scanlines)"/>
+  <rect x="3" y="3" width="1174" height="580" rx="16" fill="none" stroke="url(#border)"/>
+  <rect x="14" y="18" width="488" height="540" rx="14" fill="#07111B" fill-opacity=".65" stroke="url(#border)" opacity=".65"/>
+  <rect x="508" y="18" width="655" height="540" rx="14" fill="#07111B" fill-opacity=".65" stroke="url(#border)" opacity=".65"/>
+  <circle cx="28" cy="20" r="5" fill="#EF4444"/><circle cx="46" cy="20" r="5" fill="#F59E0B"/><circle cx="64" cy="20" r="5" fill="#10B981"/>
+  <text x="590" y="25" text-anchor="middle" class="mono muted">sanskriti@github ~ % ./profile.sh --live</text>
+  <circle cx="1070" cy="20" r="4" fill="#F87171" class="blink"/><text x="1082" y="24" class="mono muted">SCANNING</text>
+  <text x="30" y="44" class="mono label">VISUAL.MAP</text><text x="524" y="44" class="mono label">SYSTEM.INFO</text>
 
-  <rect x="42" y="92" width="470" height="220" rx="12" fill="#06121A" fill-opacity=".85" stroke="#0D9070"/>
-  <text x="62" y="119" fill="#44EFA0" font-family="monospace" font-size="14">VISUAL RADAR / ACTIVE AREAS</text>
-  <circle cx="277" cy="205" r="91" fill="url(#glow)"/>
-  <circle cx="277" cy="205" r="88" stroke="#117C61"/>
-  <circle cx="277" cy="205" r="61" stroke="#117C61"/>
-  <circle cx="277" cy="205" r="31" stroke="#117C61"/>
-  <path d="M277 205L332 132" stroke="#42FFA0" stroke-width="2" filter="url(#softGlow)"/>
-  <path d="M277 117V293M189 205H365" stroke="#16745D"/>
-  <circle cx="332" cy="132" r="7" fill="#A0FFC2" filter="url(#softGlow)"/>
-  <circle cx="225" cy="163" r="5" fill="#41D985"/>
-  <circle cx="345" cy="245" r="5" fill="#41D985"/>
-  <circle cx="202" cy="249" r="4" fill="#41D985"/>
-  <circle cx="298" cy="274" r="5" fill="#41D985"/>
-  <text x="340" y="128" fill="#A0FFC2" font-family="monospace" font-size="12">REACT</text>
-  <text x="348" y="263" fill="#6CEBA2" font-family="monospace" font-size="12">NODE</text>
-  <text x="165" y="270" fill="#6CEBA2" font-family="monospace" font-size="12">PYTHON</text>
-  <text x="185" y="153" fill="#6CEBA2" font-family="monospace" font-size="12">ML / NLP</text>
-  <text x="62" y="300" fill="#257F69" font-family="monospace" font-size="11">signal locked // projects online</text>
+  <g class="mono ascii">
+    <text x="30" y="72">      .-::::::-.       .-::::::-.       .-::::::-.       </text>
+    <text x="30" y="82">   .+%%%%%%%%%%+.   .+%%%%%%%%%%+.   .+%%%%%%%%%%+.   </text>
+    <text x="30" y="92">  :%%%%%+==+%%%%%: :%%%%%+==+%%%%%: :%%%%%+==+%%%%%:  </text>
+    <text x="30" y="102"> :%%%%+.    .+%%%%::%%%%+.    .+%%%%::%%%%+.    .+%%%%: </text>
+    <text x="30" y="112"> %%%%:  ##    :%%%%%%%%:  ##    :%%%%%%%%:  ##    :%%%%% </text>
+    <text x="30" y="122"> %%%%   ##     %%%%%%%%   ##     %%%%%%%%   ##     %%%%% </text>
+    <text x="30" y="132"> :%%%%+.    .+%%%%::%%%%+.    .+%%%%::%%%%+.    .+%%%%: </text>
+    <text x="30" y="142">  :%%%%%+==+%%%%%: :%%%%%+==+%%%%%: :%%%%%+==+%%%%%:  </text>
+    <text x="30" y="152">   .+%%%%%%%%%%+.   .+%%%%%%%%%%+.   .+%%%%%%%%%%+.   </text>
+    <text x="30" y="172">       FRONTEND              BACKEND                DATA</text>
+    <text x="30" y="198">  React  Next.js       Node.js  Express        PostgreSQL</text>
+    <text x="30" y="210">  Redux  Zustand       REST    WebSockets       MongoDB Redis</text>
+    <text x="30" y="222">  Tailwind GSAP        JWT     OAuth             SQL     ML/NLP</text>
+    <text x="30" y="250">  CLOUD / DEVOPS</text>
+    <text x="30" y="270">  AWS EC2 S3   Docker   Terraform   GitHub Actions</text>
+    <text x="30" y="298">  JAVA  JAVASCRIPT  TYPESCRIPT  PYTHON  HTML  CSS</text>
+    <text x="30" y="338">  . . . . . . . . . . . . . . . . . . . . . . . . . .</text>
+    <text x="30" y="358">  signal locked // systems online // shipping mode active</text>
+    <text x="30" y="410">  &gt; scan --profile --focus "distributed systems + product UI"</text>
+    <text x="30" y="430">  &gt; result: architecture / execution / curiosity</text>
+    <text x="30" y="470">  [████████████████████████████████████████████████]</text>
+    <text x="30" y="492">  portfolio console ready</text>
+  </g>
 
-  <rect x="532" y="92" width="626" height="220" rx="12" fill="#06121A" fill-opacity=".85" stroke="#0D9070"/>
-  <text x="558" y="124" fill="#44EFA0" font-family="monospace" font-size="20">SYSTEM.INFO</text>
-  <text x="558" y="157" fill="#7DFFB5" font-family="monospace" font-size="16">Sanskriti</text>
-  <text x="558" y="184" fill="#44EFA0" font-family="monospace" font-size="13">Role        </text><text x="670" y="184" fill="#D0FFE1" font-family="monospace" font-size="13">Full-stack developer</text>
-  <text x="558" y="208" fill="#44EFA0" font-family="monospace" font-size="13">Focus       </text><text x="670" y="208" fill="#D0FFE1" font-family="monospace" font-size="13">Useful products and clean UI</text>
-  <text x="558" y="232" fill="#44EFA0" font-family="monospace" font-size="13">Frontend    </text><text x="670" y="232" fill="#D0FFE1" font-family="monospace" font-size="13">React, Vite, Tailwind CSS</text>
-  <text x="558" y="256" fill="#44EFA0" font-family="monospace" font-size="13">Backend     </text><text x="670" y="256" fill="#D0FFE1" font-family="monospace" font-size="13">Node.js, Express, Flask</text>
-  <text x="558" y="280" fill="#44EFA0" font-family="monospace" font-size="13">Data        </text><text x="670" y="280" fill="#D0FFE1" font-family="monospace" font-size="13">Python, scikit-learn, MongoDB</text>
-  <text x="558" y="304" fill="#44EFA0" font-family="monospace" font-size="13">Status      </text><text x="670" y="304" fill="#A0FFC2" font-family="monospace" font-size="13">building // learning // shipping</text>
+  <g class="mono">
+    <text x="524" y="84" class="heading">Sanskriti Gupta</text>
+    <text x="524" y="112" class="key">Subject       </text><text x="700" y="112" class="value">Software Engineer / Full-stack Builder</text>
+    <text x="524" y="136" class="key">Education     </text><text x="700" y="136" class="value">B.Tech CSE @ VIT Bhopal | CGPA 8.54</text>
+    <text x="524" y="160" class="key">Experience    </text><text x="700" y="160" class="value">Software Engineer Intern @ GeekyAnts</text>
+    <text x="524" y="184" class="key">Status        </text><text x="700" y="184" class="value">Building · Learning · Shipping</text>
+    <line x1="524" y1="208" x2="1145" y2="208" stroke="#1E3A2F"/>
+    <text x="524" y="236" class="label">CORE EXPERTISE</text>
+    <text x="524" y="264" class="key">Frontend      </text><text x="700" y="264" class="value">React, Next.js, Redux, Tailwind, GSAP</text>
+    <text x="524" y="288" class="key">Backend       </text><text x="700" y="288" class="value">Node.js, Express, REST, Socket.IO, JWT</text>
+    <text x="524" y="312" class="key">Data          </text><text x="700" y="312" class="value">PostgreSQL, MongoDB, Redis, SQL</text>
+    <text x="524" y="336" class="key">Cloud         </text><text x="700" y="336" class="value">AWS, Docker, Terraform, CI/CD</text>
+    <text x="524" y="360" class="key">Languages     </text><text x="700" y="360" class="value">Java, JavaScript, TypeScript, Python</text>
+    <line x1="524" y1="384" x2="1145" y2="384" stroke="#1E3A2F"/>
+    <text x="524" y="412" class="label">SIGNALS</text>
+    <text x="524" y="440" class="key">Achievements  </text><text x="700" y="440" class="value">AWS CCP · CodeVita Top 3%</text>
+    <text x="524" y="464" class="key">Community     </text><text x="700" y="464" class="value">GDG technical mentor and builder</text>
+    <text x="524" y="500" class="key">Contact       </text><text x="700" y="500" class="value">github.com/sanskriti49</text>
+    <text x="524" y="524" class="muted">profile state: ready to collaborate_</text>
+  </g>
 </svg>
