@@ -14,6 +14,7 @@
     </linearGradient>
     <pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#7DD3FC" opacity=".04"/></pattern>
     <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <clipPath id="photoClip"><rect x="30" y="58" width="455" height="470" rx="10"/></clipPath>
     <style>
       .mono { font-family: "Courier New", Consolas, monospace; }
       .ascii { font-size: 8px; fill: url(#text); letter-spacing: 1px; }
@@ -35,7 +36,11 @@
   <circle cx="1070" cy="20" r="4" fill="#F87171" class="blink"/><text x="1082" y="24" class="mono muted">SCANNING</text>
   <text x="30" y="44" class="mono label">VISUAL.MAP</text><text x="524" y="44" class="mono label">SYSTEM.INFO</text>
 
-  <g class="mono ascii">
+  <g clip-path="url(#photoClip)">
+    <image href="sanskriti-photo.jpg" x="30" y="58" width="455" height="470" preserveAspectRatio="xMidYMid slice" opacity=".68"/>
+    <rect x="30" y="58" width="455" height="470" fill="#03111A" opacity=".48"/>
+    <rect x="30" y="58" width="455" height="470" fill="url(#scanlines)" opacity=".8"/>
+    <g class="mono ascii" opacity=".8">
     <text x="30" y="72">      .-::::::-.       .-::::::-.       .-::::::-.       </text>
     <text x="30" y="82">   .+%%%%%%%%%%+.   .+%%%%%%%%%%+.   .+%%%%%%%%%%+.   </text>
     <text x="30" y="92">  :%%%%%+==+%%%%%: :%%%%%+==+%%%%%: :%%%%%+==+%%%%%:  </text>
@@ -58,6 +63,15 @@
     <text x="30" y="430">  &gt; result: architecture / execution / curiosity</text>
     <text x="30" y="470">  [████████████████████████████████████████████████]</text>
     <text x="30" y="492">  portfolio console ready</text>
+    </g>
+    <g class="blink" opacity=".8">
+      <rect x="30" y="176" width="455" height="3" fill="#38BDF8"/>
+      <rect x="30" y="344" width="455" height="2" fill="#22C55E"/>
+    </g>
+    <g class="mono muted">
+      <text x="44" y="82">PHOTO.SIGNAL // ENCRYPTED VISUAL PROFILE</text>
+      <text x="44" y="512">glitch channel stable // identity confirmed</text>
+    </g>
   </g>
 
   <g class="mono">
