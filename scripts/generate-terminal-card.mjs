@@ -5,10 +5,12 @@ import { resolve } from "node:path";
 const photoPath = resolve(process.env.PROFILE_PHOTO || "assets/profile-photo.jpg");
 const outputDir = resolve(process.env.TERMINAL_OUTPUT_DIR || "assets");
 const asciiPath = resolve("assets/profile-ascii.txt");
+const ASCII_FONT_SIZE = 8;
+const ASCII_LINE_HEIGHT = ASCII_FONT_SIZE + 0.5;
 execFileSync(process.env.PYTHON || "python", ["scripts/photo_to_ascii.py", photoPath, asciiPath]);
 const ascii = readFileSync(asciiPath, "utf8")
   .split("\n")
-  .map((line, index) => `<tspan x="48" y="${150 + index * 10}">${line.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")}</tspan>`)
+  .map((line, index) => `<tspan x="48" y="${130 + index * ASCII_LINE_HEIGHT}">${line.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")}</tspan>`)
   .join("");
 
 const palettes = {
@@ -50,7 +52,7 @@ function card(theme, palette) {
   <style>
     .mono { font-family: "Courier New", Consolas, monospace; }
     .key { fill: ${p.primary}; font-size: 15px; font-weight: bold; }
-    .ascii { fill: url(#asciiTint); font-size: 8px; letter-spacing: 1px; }
+    .ascii { fill: url(#asciiTint); font-size: ${ASCII_FONT_SIZE}px; line-height: ${ASCII_LINE_HEIGHT}px; letter-spacing: 0.15px; }
     .value { fill: ${p.text}; font-size: 15px; }
     .label { fill: ${p.secondary}; font-size: 11px; letter-spacing: 2px; }
     .muted { fill: ${p.muted}; font-size: 11px; letter-spacing: 1px; }
