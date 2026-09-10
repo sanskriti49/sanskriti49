@@ -1,133 +1,303 @@
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-const outputDir = resolve(process.env.TERMINAL_OUTPUT_DIR || "assets");
 const asciiPath = resolve("assets/profile-ascii.txt");
+const lines = readFileSync(asciiPath, "utf8").split("\n");
 
-const rawLines = readFileSync(asciiPath, "utf8").split("\n");
-
-const asciiDarkTspans = rawLines
+// 52 lines from user SVG
+const darkTspans = lines
   .map(
     (line, index) =>
-      `<tspan x="16" y="${(26 + index * 10.5).toFixed(2)}" xml:space="preserve">${line
+      `<tspan x="30" y="${(36.0 + index * 8.65).toFixed(2)}" textLength="456" lengthAdjust="spacingAndGlyphs" xml:space="preserve">${line
         .replaceAll("&", "&amp;")
         .replaceAll("<", "&lt;")
         .replaceAll(">", "&gt;")}</tspan>`,
   )
-  .join("");
+  .join("\n");
 
-const palettes = {
-  dark: {
-    background: "#050B12",
-    panel: "#06131A",
-    screenBg: "#050b08",
-    screenText: "#4ADE80",
-    border: "#19D886",
-    borderAlt: "#0B7661",
-    primary: "#7AF5B2",
-    secondary: "#38BDF8",
-    text: "#D0FFE1",
-    muted: "#257F69",
-    statusDot: "#4ADE80",
-    statusText: "LIVE // VERIFIED",
-  },
-  light: {
-    background: "#F3FAF7",
-    panel: "#E7F5EF",
-    screenBg: "#FFFFFF",
-    screenText: "#075E46",
-    border: "#087F5B",
-    borderAlt: "#7DB8A1",
-    primary: "#075E46",
-    secondary: "#075985",
-    text: "#102A23",
-    muted: "#417566",
-    statusDot: "#087F5B",
-    statusText: "LIVE // VERIFIED",
-  },
-};
+const lightTspans = lines
+  .map(
+    (line, index) =>
+      `<tspan x="30" y="${(36.0 + index * 8.65).toFixed(2)}" textLength="456" lengthAdjust="spacingAndGlyphs" xml:space="preserve">${line
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")}</tspan>`,
+  )
+  .join("\n");
 
-function card(theme, palette) {
-  const p = palettes[palette];
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="586" viewBox="0 0 1180 586" role="img" aria-labelledby="title desc">
-<title id="title">Sanskriti Gupta hacker terminal profile</title>
-<desc id="desc">A terminal-style profile card with Sanskriti Gupta's ASCII portrait and system information.</desc>
+function buildDarkSvg() {
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="586" viewBox="0 0 1180 586">
 <defs>
-  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${p.background}"/><stop offset="1" stop-color="${p.panel}"/></linearGradient>
-  <pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#38BDF8" opacity=".04"/></pattern>
-  <linearGradient id="scanBeam" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="${p.primary}" stop-opacity="0"/>
-    <stop offset="50%" stop-color="${p.primary}" stop-opacity="0.28"/>
-    <stop offset="100%" stop-color="${p.primary}" stop-opacity="0"/>
+  <linearGradient id="asciiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#9598cb"/>
+    <stop offset="100%" stop-color="#a5a8db"/>
   </linearGradient>
-  <clipPath id="photoClip"><rect x="30" y="90" width="460" height="420" rx="12"/></clipPath>
+  <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#22C55E"/>
+    <stop offset="50%" stop-color="#10B981"/>
+    <stop offset="100%" stop-color="#34D399"/>
+  </linearGradient>
+  <radialGradient id="bgGlow" cx="30%" cy="20%" r="80%">
+    <stop offset="0%" stop-color="#0B1120"/>
+    <stop offset="100%" stop-color="#050816"/>
+  </radialGradient>
+  <linearGradient id="scanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#22C55E" stop-opacity="0"/>
+    <stop offset="45%" stop-color="#22C55E" stop-opacity="0.06"/>
+    <stop offset="50%" stop-color="#86EFAC" stop-opacity="0.55"/>
+    <stop offset="55%" stop-color="#22C55E" stop-opacity="0.06"/>
+    <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
+  </linearGradient>
+  <pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse">
+    <rect width="4" height="1" fill="#7DD3FC" opacity="0.05"/>
+  </pattern>
+  <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="4" result="blur"/>
+    <feMerge>
+      <feMergeNode in="blur"/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+  <mask id="revealMask" maskUnits="userSpaceOnUse" x="0" y="0" width="1180" height="620">
+    <rect x="0" y="0" width="1180" height="0" fill="#fff">
+      <animate attributeName="height" from="0" to="560" dur="2.6s" begin="0.2s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1"/>
+    </rect>
+  </mask>
+  <clipPath id="lc0"><rect x="500" y="26.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="0.75s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc1"><rect x="500" y="50.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="0.86s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc2"><rect x="500" y="72.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="0.98s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc3"><rect x="500" y="94.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="1.09s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc4"><rect x="500" y="116.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="1.21s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc5"><rect x="500" y="138.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="1.32s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc6"><rect x="500" y="160.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="1.44s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc7"><rect x="500" y="182.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="1.55s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc8"><rect x="500" y="204.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="1.67s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc9"><rect x="500" y="226.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="1.78s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc10"><rect x="500" y="248.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="1.90s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc11"><rect x="500" y="270.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="2.02s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc12"><rect x="500" y="292.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="2.13s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc13"><rect x="500" y="314.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="2.25s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc14"><rect x="500" y="336.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="2.36s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc15"><rect x="500" y="358.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="2.48s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc16"><rect x="500" y="380.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="2.59s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc17"><rect x="500" y="402.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="2.71s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc18"><rect x="500" y="424.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="2.82s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc19"><rect x="500" y="446.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="2.94s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc20"><rect x="500" y="468.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="3.05s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc21"><rect x="500" y="490.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="3.17s" fill="freeze"/></rect></clipPath>
   <style>
-    .mono { font-family: "SFMono-Regular", "JetBrains Mono", "Fira Code", Consolas, "DejaVu Sans Mono", monospace; }
-    .key { fill: ${p.primary}; font-size: 15px; font-weight: bold; }
-    .ascii { fill: ${p.screenText}; font-size: 10px; white-space: pre; }
-    .value { fill: ${p.text}; font-size: 15px; }
-    .label { fill: ${p.secondary}; font-size: 11px; letter-spacing: 2px; }
-    .muted { fill: ${p.muted}; font-size: 11px; letter-spacing: 1px; }
-    .screen-label { fill: ${p.primary}; font-size: 11px; letter-spacing: 1.5px; font-weight: bold; }
-    .screen-muted { fill: ${p.muted}; font-size: 10px; letter-spacing: 1px; }
-    .blink { animation: blink 1.5s ease-in-out infinite alternate; }
-    @keyframes blink { 0% { opacity: 1; } 100% { opacity: 0.25; } }
+    .ascii  { font-family: "SFMono-Regular", "JetBrains Mono", "Fira Code", Consolas, "DejaVu Sans Mono", monospace; font-size: 8px; fill: #9598cb; letter-spacing: -0.2px; }
+    .key    { font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #4ADE80; font-weight: bold; }
+    .value  { font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #FFFFFF; font-weight: 500; }
+    .cc     { font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #1E3A2F; }
+    .head   { font-family: 'Courier New', Consolas, monospace; font-size: 17px; fill: #22C55E; font-weight: bold; }
+    .accent { font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #34D399; font-weight: bold; }
+    text, tspan { white-space: pre; }
+    
+    .term-label { font-family: 'Courier New', Consolas, monospace; font-size: 12px; fill: #86EFAC; letter-spacing: 0.5px; opacity: 0.8; }
+    .scan-label { font-family: 'Courier New', Consolas, monospace; font-size: 10px; fill: #F87171; letter-spacing: 1px; }
+    .panel-title-blue { font-family: 'Courier New', Consolas, monospace; font-size: 11px; fill: #38BDF8; letter-spacing: 2px; opacity: 0.85; }
+    .panel-title { font-family: 'Courier New', Consolas, monospace; font-size: 11px; fill: #22C55E; letter-spacing: 2px; opacity: 0.85; }
+    .cursor-blink { fill: #22C55E; }
   </style>
 </defs>
-<rect width="1180" height="586" rx="18" fill="url(#bg)" stroke="${p.border}" stroke-width="2"/>
-<rect x="14" y="18" width="488" height="540" rx="14" fill="${p.panel}" stroke="${p.borderAlt}"/>
-<rect x="508" y="18" width="655" height="540" rx="14" fill="${p.panel}" stroke="${p.borderAlt}"/>
-<circle cx="30" cy="20" r="5" fill="#EF4444"/><circle cx="48" cy="20" r="5" fill="#F59E0B"/><circle cx="66" cy="20" r="5" fill="#10B981"/>
-<text x="590" y="25" text-anchor="middle" class="mono muted">sanskriti@forge ~ % ./profile.sh --live</text>
-<circle cx="1030" cy="20" r="4" fill="${p.statusDot}" class="blink"/><text x="1042" y="24" class="mono muted">${p.statusText}</text>
-<text x="30" y="48" class="mono label">VISUAL.MAP</text><text x="524" y="48" class="mono label">SYSTEM.INFO</text>
 
-<!-- Embedded Visual Map Display -->
-<svg x="30" y="90" width="460" height="420" viewBox="0 0 692 630" clip-path="url(#photoClip)">
-  <rect width="692" height="630" rx="12" fill="${p.screenBg}"/>
-  <text x="16" y="26" class="mono ascii" xml:space="preserve">${asciiDarkTspans}</text>
-  <rect width="692" height="630" fill="url(#scanlines)"/>
-  <rect x="0" y="0" width="692" height="42" fill="url(#scanBeam)" pointer-events="none">
-    <animate attributeName="y" values="-50;630;-50" dur="5.5s" repeatCount="indefinite"/>
-  </rect>
-</svg>
+<rect width="1180" height="586" rx="18" fill="url(#bgGlow)"/>
+<rect width="1180" height="586" rx="18" fill="url(#scanlines)"/>
 
-<g class="mono">
-  <text x="524" y="92" class="key">sanskriti@forge</text>
-  <text x="524" y="126" class="key">Subject ........ </text><text x="700" y="126" class="value">Sanskriti Gupta</text>
-  <text x="524" y="150" class="key">Role ........... </text><text x="700" y="150" class="value">Full-Stack Developer · CS Student</text>
-  <text x="524" y="174" class="key">Education ...... </text><text x="700" y="174" class="value">B.Tech CSE · VIT Bhopal</text>
-  <text x="524" y="198" class="key">Status .......... </text><text x="700" y="198" class="value">Learning · Building · Shipping</text>
-  <text x="524" y="222" class="key">ToolChain ....... </text><text x="700" y="222" class="value">GitHub Copilot · VS Code</text>
-  <text x="524" y="246" class="key">Core Lang ....... </text><text x="700" y="246" class="value">Java · JavaScript · TypeScript · Python</text>
-  <text x="524" y="270" class="key">Core Frontend ... </text><text x="700" y="270" class="value">React · Next.js · Tailwind CSS · GSAP</text>
-  <text x="524" y="294" class="key">Core Backend .... </text><text x="700" y="294" class="value">Node.js · Express · REST · Socket.IO</text>
-  <text x="524" y="318" class="key">Core Database ... </text><text x="700" y="318" class="value">PostgreSQL · MongoDB · Redis</text>
-  <text x="524" y="342" class="key">Core Infra ...... </text><text x="700" y="342" class="value">AWS · Docker · Terraform · GitHub Actions</text>
-  <line x1="524" y1="366" x2="1140" y2="366" stroke="${p.borderAlt}"/>
-  <text x="524" y="394" class="label">- Contact</text>
-  <text x="524" y="422" class="key">Portfolio ....... </text><text x="700" y="422" class="value">sanskriti49.github.io/my_portfolio</text>
-  <text x="524" y="446" class="key">LinkedIn ........ </text><text x="700" y="446" class="value">linkedin.com/in/sanskriti49</text>
-  <text x="524" y="470" class="key">GitHub .......... </text><text x="700" y="470" class="value">github.com/sanskriti49</text>
-  <line x1="524" y1="490" x2="1140" y2="490" stroke="${p.borderAlt}"/>
-  <text x="524" y="518" class="label">- Live Stats</text>
-  <text x="524" y="542" class="value">See live GitHub stats below ↓</text>
+<g id="titlebar">
+  <rect x="3" y="3" width="1174" height="34" rx="16" fill="#0B1120" fill-opacity="0.85"/>
+  <circle cx="24" cy="20" r="5" fill="#EF4444"><animate attributeName="opacity" values="1;0.55;1" dur="4s" repeatCount="indefinite"/></circle>
+  <circle cx="42" cy="20" r="5" fill="#F59E0B"><animate attributeName="opacity" values="1;0.55;1" dur="4s" begin="0.3s" repeatCount="indefinite"/></circle>
+  <circle cx="60" cy="20" r="5" fill="#10B981"><animate attributeName="opacity" values="1;0.55;1" dur="4s" begin="0.6s" repeatCount="indefinite"/></circle>
+  <text x="590" y="25" text-anchor="middle" class="term-label">sanskriti@forge ~ % ./profile.sh --live</text>
+  <circle cx="1070" cy="20" r="4" fill="#F87171">
+    <animate attributeName="opacity" values="1;0.15;1" dur="1.1s" repeatCount="indefinite"/>
+  </circle>
+  <text x="1080" y="24" class="scan-label">SCANNING</text>
 </g>
+
+<g transform="translate(0,44)">
+  <rect x="14" y="18" width="488" height="490" rx="14" fill="#0B1120" fill-opacity="0.35" stroke="url(#borderGrad)" stroke-width="1" opacity="0.35"/>
+  <rect x="508" y="8" width="655" height="518" rx="14" fill="#0B1120" fill-opacity="0.35" stroke="url(#borderGrad)" stroke-width="1" opacity="0.35"/>
+  <text x="30" y="14" class="panel-title-blue">VISUAL.MAP</text>
+  <text x="524" y="6" class="panel-title">SYSTEM.INFO</text>
+
+  <g mask="url(#revealMask)">
+    <text x="30" y="0" class="ascii">
+${darkTspans}
+    </text>
+  </g>
+
+  <g clip-path="url(#lc0)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="42" class="head">sanskriti@forge</tspan><tspan class="cc"> -——————————————————————————————————————————-—-</tspan></text></g>
+  <g clip-path="url(#lc1)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="66" class="cc">. </tspan><tspan class="key">Subject</tspan><tspan class="cc">: ................ </tspan><tspan class="value">Sanskriti Gupta</tspan></text></g>
+  <g clip-path="url(#lc2)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="88" class="cc">. </tspan><tspan class="key">Role</tspan><tspan class="cc">: ................... </tspan><tspan class="value">Full-Stack Developer · CS Student</tspan></text></g>
+  <g clip-path="url(#lc3)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="110" class="cc">. </tspan></text></g>
+  <g clip-path="url(#lc4)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="132" class="cc">. </tspan><tspan class="key">Education</tspan><tspan class="cc">: .............. </tspan><tspan class="value">B.Tech CSE · VIT Bhopal</tspan></text></g>
+  <g clip-path="url(#lc5)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="154" class="cc">. </tspan><tspan class="key">Status</tspan><tspan class="cc">: ................. </tspan><tspan class="value">Learning · Building · Shipping</tspan></text></g>
+  <g clip-path="url(#lc6)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="176" class="cc">. </tspan><tspan class="key">ToolChain</tspan><tspan class="cc">: .............. </tspan><tspan class="value">GitHub Copilot · VS Code</tspan></text></g>
+  <g clip-path="url(#lc7)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="198" class="cc">. ......................... </tspan><tspan class="value">Docker, Obsidian</tspan></text></g>
+  <g clip-path="url(#lc8)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="220" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">Lang</tspan><tspan class="cc">: .............. </tspan><tspan class="value">Java, JavaScript, TypeScript, Python</tspan></text></g>
+  <g clip-path="url(#lc9)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="242" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">Frontend</tspan><tspan class="cc">: .......... </tspan><tspan class="value">React, Next.js, Tailwind, GSAP</tspan></text></g>
+  <g clip-path="url(#lc10)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="264" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">Backend</tspan><tspan class="cc">: ........... </tspan><tspan class="value">Node.js, Express, REST, Socket.IO</tspan></text></g>
+  <g clip-path="url(#lc11)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="286" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">Database</tspan><tspan class="cc">: .......... </tspan><tspan class="value">PostgreSQL, MongoDB, Redis</tspan></text></g>
+  <g clip-path="url(#lc12)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="308" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">Infra</tspan><tspan class="cc">: ............. </tspan><tspan class="value">AWS, Docker, Terraform, CI/CD</tspan></text></g>
+  <g clip-path="url(#lc13)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="330" class="cc">. </tspan></text></g>
+  <g clip-path="url(#lc14)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="352" class="accent">- Contact</tspan><tspan class="cc"> -————————————————————————————————————————————-—-</tspan></text></g>
+  <g clip-path="url(#lc15)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="374" class="cc">. </tspan></text></g>
+  <g clip-path="url(#lc16)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="396" class="cc">. </tspan><tspan class="key">Portfolio</tspan><tspan class="cc">: .............. </tspan><tspan class="value">sanskriti49.github.io/my_portfolio</tspan></text></g>
+  <g clip-path="url(#lc17)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="418" class="cc">. </tspan><tspan class="key">LinkedIn</tspan><tspan class="cc">: ............... </tspan><tspan class="value">linkedin.com/in/sanskriti49</tspan></text></g>
+  <g clip-path="url(#lc18)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="440" class="cc">. </tspan><tspan class="key">GitHub</tspan><tspan class="cc">: ................. </tspan><tspan class="value">sanskriti49</tspan></text></g>
+  <g clip-path="url(#lc19)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="462" class="cc">. </tspan></text></g>
+  <g clip-path="url(#lc20)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="484" class="accent">- Live Stats</tspan><tspan class="cc"> -————————————————————————————————————————————-—-</tspan></text></g>
+  <g clip-path="url(#lc21)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="506" class="cc">. </tspan><tspan class="value">See live GitHub stats badges below in README ↓</tspan></text></g>
+
+  <rect x="522" y="491.0" width="9" height="16" class="cursor-blink" opacity="0">
+    <animate attributeName="opacity" values="0;0;1;0;1;0;1;0" keyTimes="0;0.01;0.02;0.3;0.5;0.7;0.85;1" dur="1.4s" begin="3.66s" repeatCount="indefinite"/>
+  </rect>
+</g>
+
+<rect x="0" y="-70" width="1180" height="70" fill="url(#scanGrad)" opacity="0.7" style="mix-blend-mode:screen">
+  <animateTransform attributeName="transform" type="translate" from="0 -70" to="0 630" dur="4.2s" repeatCount="indefinite"/>
+</rect>
+
+<rect x="3" y="3" width="1174" height="580" rx="16" fill="none" stroke="url(#borderGrad)" stroke-width="2" opacity="0.8">
+  <animate attributeName="opacity" values="0.5;0.95;0.5" dur="3.2s" repeatCount="indefinite"/>
+</rect>
 </svg>`;
 }
 
-mkdirSync(outputDir, { recursive: true });
-writeFileSync(resolve(outputDir, "terminal-card-dark.svg"), card("dark", "dark"));
-writeFileSync(resolve(outputDir, "terminal-card-light.svg"), card("light", "light"));
+function buildLightSvg() {
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="586" viewBox="0 0 1180 586">
+<defs>
+  <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#059669"/>
+    <stop offset="50%" stop-color="#10B981"/>
+    <stop offset="100%" stop-color="#34D399"/>
+  </linearGradient>
+  <radialGradient id="bgGlow" cx="30%" cy="20%" r="80%">
+    <stop offset="0%" stop-color="#F8FAFC"/>
+    <stop offset="100%" stop-color="#F1F5F9"/>
+  </radialGradient>
+  <linearGradient id="scanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#059669" stop-opacity="0"/>
+    <stop offset="45%" stop-color="#059669" stop-opacity="0.04"/>
+    <stop offset="50%" stop-color="#34D399" stop-opacity="0.35"/>
+    <stop offset="55%" stop-color="#059669" stop-opacity="0.04"/>
+    <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
+  </linearGradient>
+  <pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse">
+    <rect width="4" height="1" fill="#0D9488" opacity="0.03"/>
+  </pattern>
+  <mask id="revealMask" maskUnits="userSpaceOnUse" x="0" y="0" width="1180" height="620">
+    <rect x="0" y="0" width="1180" height="0" fill="#fff">
+      <animate attributeName="height" from="0" to="560" dur="2.6s" begin="0.2s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1"/>
+    </rect>
+  </mask>
+  <clipPath id="lc0"><rect x="500" y="26.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="0.75s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc1"><rect x="500" y="50.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="0.86s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc2"><rect x="500" y="72.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="0.98s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc3"><rect x="500" y="94.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="1.09s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc4"><rect x="500" y="116.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="1.21s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc5"><rect x="500" y="138.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="1.32s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc6"><rect x="500" y="160.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="1.44s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc7"><rect x="500" y="182.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="1.55s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc8"><rect x="500" y="204.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="1.67s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc9"><rect x="500" y="226.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="1.78s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc10"><rect x="500" y="248.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="1.90s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc11"><rect x="500" y="270.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="2.02s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc12"><rect x="500" y="292.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="2.13s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc13"><rect x="500" y="314.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="2.25s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc14"><rect x="500" y="336.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="2.36s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc15"><rect x="500" y="358.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="2.48s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc16"><rect x="500" y="380.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="2.59s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc17"><rect x="500" y="402.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="2.71s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc18"><rect x="500" y="424.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="2.82s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc19"><rect x="500" y="446.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="2.94s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc20"><rect x="500" y="468.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="3.05s" fill="freeze"/></rect></clipPath>
+  <clipPath id="lc21"><rect x="500" y="490.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.38s" begin="3.17s" fill="freeze"/></rect></clipPath>
+  <style>
+    .ascii  { font-family: "SFMono-Regular", "JetBrains Mono", "Fira Code", Consolas, "DejaVu Sans Mono", monospace; font-size: 8px; fill: #4F46E5; letter-spacing: -0.2px; }
+    .key    { font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #0D9488; font-weight: bold; }
+    .value  { font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #0F172A; font-weight: 500; }
+    .cc     { font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #CBD5E1; }
+    .head   { font-family: 'Courier New', Consolas, monospace; font-size: 17px; fill: #059669; font-weight: bold; }
+    .accent { font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #059669; font-weight: bold; }
+    text, tspan { white-space: pre; }
+    
+    .term-label { font-family: 'Courier New', Consolas, monospace; font-size: 12px; fill: #0D9488; letter-spacing: 0.5px; opacity: 0.8; }
+    .scan-label { font-family: 'Courier New', Consolas, monospace; font-size: 10px; fill: #DC2626; letter-spacing: 1px; }
+    .panel-title { font-family: 'Courier New', Consolas, monospace; font-size: 11px; fill: #059669; letter-spacing: 2px; opacity: 0.85; }
+    .cursor-blink { fill: #059669; }
+  </style>
+</defs>
 
-const readmePath = resolve("README.md");
-if (existsSync(readmePath)) {
-  const version = new Date().toISOString().slice(0, 10).replaceAll("-", "");
-  const readme = readFileSync(readmePath, "utf8").replace(
-    /(\.\/assets\/terminal-card-(?:dark|light)\.svg)\?v=[^" )]+/g,
-    `$1?v=${version}`,
-  );
-  writeFileSync(readmePath, readme);
+<rect width="1180" height="586" rx="18" fill="url(#bgGlow)"/>
+<rect width="1180" height="586" rx="18" fill="url(#scanlines)"/>
+
+<g id="titlebar">
+  <rect x="3" y="3" width="1174" height="34" rx="16" fill="#FFFFFF" fill-opacity="0.9"/>
+  <circle cx="24" cy="20" r="5" fill="#F87171"><animate attributeName="opacity" values="1;0.55;1" dur="4s" repeatCount="indefinite"/></circle>
+  <circle cx="42" cy="20" r="5" fill="#FBBF24"><animate attributeName="opacity" values="1;0.55;1" dur="4s" begin="0.3s" repeatCount="indefinite"/></circle>
+  <circle cx="60" cy="20" r="5" fill="#34D399"><animate attributeName="opacity" values="1;0.55;1" dur="4s" begin="0.6s" repeatCount="indefinite"/></circle>
+  <text x="590" y="25" text-anchor="middle" class="term-label">sanskriti@forge ~ % ./profile.sh --live</text>
+  <circle cx="1070" cy="20" r="4" fill="#EF4444">
+    <animate attributeName="opacity" values="1;0.15;1" dur="1.1s" repeatCount="indefinite"/>
+  </circle>
+  <text x="1080" y="24" class="scan-label">SCANNING</text>
+</g>
+
+<g transform="translate(0,44)">
+  <rect x="14" y="18" width="488" height="490" rx="14" fill="#FFFFFF" fill-opacity="0.55" stroke="url(#borderGrad)" stroke-width="1" opacity="0.4"/>
+  <rect x="508" y="8" width="655" height="518" rx="14" fill="#FFFFFF" fill-opacity="0.55" stroke="url(#borderGrad)" stroke-width="1" opacity="0.4"/>
+  <text x="30" y="24" class="panel-title">VISUAL.MAP</text>
+  <text x="524" y="6" class="panel-title">SYSTEM.INFO</text>
+
+  <g mask="url(#revealMask)">
+    <text x="30" y="0" class="ascii">
+${lightTspans}
+    </text>
+  </g>
+
+  <g clip-path="url(#lc0)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="42" class="head">sanskriti@forge</tspan><tspan class="cc"> -——————————————————————————————————————————-—-</tspan></text></g>
+  <g clip-path="url(#lc1)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="66" class="cc">. </tspan><tspan class="key">Subject</tspan><tspan class="cc">: ................ </tspan><tspan class="value">Sanskriti Gupta</tspan></text></g>
+  <g clip-path="url(#lc2)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="88" class="cc">. </tspan><tspan class="key">Role</tspan><tspan class="cc">: ................... </tspan><tspan class="value">Full-Stack Developer · CS Student</tspan></text></g>
+  <g clip-path="url(#lc3)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="110" class="cc">. </tspan></text></g>
+  <g clip-path="url(#lc4)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="132" class="cc">. </tspan><tspan class="key">Education</tspan><tspan class="cc">: .............. </tspan><tspan class="value">B.Tech CSE · VIT Bhopal</tspan></text></g>
+  <g clip-path="url(#lc5)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="154" class="cc">. </tspan><tspan class="key">Status</tspan><tspan class="cc">: ................. </tspan><tspan class="value">Learning · Building · Shipping</tspan></text></g>
+  <g clip-path="url(#lc6)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="176" class="cc">. </tspan><tspan class="key">ToolChain</tspan><tspan class="cc">: .............. </tspan><tspan class="value">GitHub Copilot · VS Code</tspan></text></g>
+  <g clip-path="url(#lc7)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="198" class="cc">. ......................... </tspan><tspan class="value">Docker, Obsidian</tspan></text></g>
+  <g clip-path="url(#lc8)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="220" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">Lang</tspan><tspan class="cc">: .............. </tspan><tspan class="value">Java, JavaScript, TypeScript, Python</tspan></text></g>
+  <g clip-path="url(#lc9)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="242" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">Frontend</tspan><tspan class="cc">: .......... </tspan><tspan class="value">React, Next.js, Tailwind, GSAP</tspan></text></g>
+  <g clip-path="url(#lc10)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="264" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">Backend</tspan><tspan class="cc">: ........... </tspan><tspan class="value">Node.js, Express, REST, Socket.IO</tspan></text></g>
+  <g clip-path="url(#lc11)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="286" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">Database</tspan><tspan class="cc">: .......... </tspan><tspan class="value">PostgreSQL, MongoDB, Redis</tspan></text></g>
+  <g clip-path="url(#lc12)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="308" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">Infra</tspan><tspan class="cc">: ............. </tspan><tspan class="value">AWS, Docker, Terraform, CI/CD</tspan></text></g>
+  <g clip-path="url(#lc13)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="330" class="cc">. </tspan></text></g>
+  <g clip-path="url(#lc14)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="352" class="accent">- Contact</tspan><tspan class="cc"> -————————————————————————————————————————————-—-</tspan></text></g>
+  <g clip-path="url(#lc15)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="374" class="cc">. </tspan></text></g>
+  <g clip-path="url(#lc16)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="396" class="cc">. </tspan><tspan class="key">Portfolio</tspan><tspan class="cc">: .............. </tspan><tspan class="value">sanskriti49.github.io/my_portfolio</tspan></text></g>
+  <g clip-path="url(#lc17)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="418" class="cc">. </tspan><tspan class="key">LinkedIn</tspan><tspan class="cc">: ............... </tspan><tspan class="value">linkedin.com/in/sanskriti49</tspan></text></g>
+  <g clip-path="url(#lc18)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="440" class="cc">. </tspan><tspan class="key">GitHub</tspan><tspan class="cc">: ................. </tspan><tspan class="value">sanskriti49</tspan></text></g>
+  <g clip-path="url(#lc19)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="462" class="cc">. </tspan></text></g>
+  <g clip-path="url(#lc20)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="484" class="accent">- Live Stats</tspan><tspan class="cc"> -————————————————————————————————————————————-—-</tspan></text></g>
+  <g clip-path="url(#lc21)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="506" class="cc">. </tspan><tspan class="value">See live GitHub stats badges below in README ↓</tspan></text></g>
+
+  <rect x="522" y="491.0" width="9" height="16" class="cursor-blink" opacity="0">
+    <animate attributeName="opacity" values="0;0;1;0;1;0;1;0" keyTimes="0;0.01;0.02;0.3;0.5;0.7;0.85;1" dur="1.4s" begin="3.66s" repeatCount="indefinite"/>
+  </rect>
+</g>
+
+<rect x="0" y="-70" width="1180" height="70" fill="url(#scanGrad)" opacity="0.7" style="mix-blend-mode:screen">
+  <animateTransform attributeName="transform" type="translate" from="0 -70" to="0 630" dur="4.2s" repeatCount="indefinite"/>
+</rect>
+
+<rect x="3" y="3" width="1174" height="580" rx="16" fill="none" stroke="url(#borderGrad)" stroke-width="2" opacity="0.8">
+  <animate attributeName="opacity" values="0.5;0.95;0.5" dur="3.2s" repeatCount="indefinite"/>
+</rect>
+</svg>`;
 }
 
-console.log("Terminal cards successfully updated with user provided ASCII SVG.");
+writeFileSync("assets/terminal-card-dark.svg", buildDarkSvg());
+writeFileSync("assets/terminal-card-light.svg", buildLightSvg());
+
+console.log("Built assets/terminal-card-dark.svg and assets/terminal-card-light.svg with exact pratikforge designs!");
