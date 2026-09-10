@@ -39,12 +39,12 @@ TOOLS     :: Git  REST APIs  Leaflet  npm
 
 <div align="center">
 
-<img src="https://ghchart.rshah.org/39d353/sanskriti49" alt="Sanskriti's GitHub contribution calendar" width="100%" />
+<img src="./assets/contribution-heatmap.svg" alt="Sanskriti's dynamic GitHub contribution heatmap" width="100%" />
 
 </div>
 
 ```text
-CONTRIBUTION GRID :: green squares = shipped code
+CONTRIBUTION GRID :: generated from GitHub's live contribution calendar
 RADAR STATUS     :: frontend online / backend online / ML scanning
 ```
 
