@@ -1,24 +1,15 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
-import { execFileSync } from "node:child_process";
 import { resolve } from "node:path";
 
-const photoPath = resolve(process.env.PROFILE_PHOTO || "assets/profile-photo.jpg");
 const outputDir = resolve(process.env.TERMINAL_OUTPUT_DIR || "assets");
 const asciiPath = resolve("assets/profile-ascii.txt");
 
-const ASCII_FONT_SIZE = 8.2;
-const ASCII_LINE_HEIGHT = 8.7;
-const ASCII_START_X = 68;
-const ASCII_START_Y = 132;
+const rawLines = readFileSync(asciiPath, "utf8").split("\n");
 
-// Execute Python conversion
-execFileSync(process.env.PYTHON || "python", ["scripts/photo_to_ascii.py", photoPath, asciiPath]);
-
-const ascii = readFileSync(asciiPath, "utf8")
-  .split("\n")
+const asciiDarkTspans = rawLines
   .map(
     (line, index) =>
-      `<tspan x="${ASCII_START_X}" y="${ASCII_START_Y + index * ASCII_LINE_HEIGHT}">${line
+      `<tspan x="16" y="${(26 + index * 10.5).toFixed(2)}" xml:space="preserve">${line
         .replaceAll("&", "&amp;")
         .replaceAll("<", "&lt;")
         .replaceAll(">", "&gt;")}</tspan>`,
@@ -29,15 +20,15 @@ const palettes = {
   dark: {
     background: "#050B12",
     panel: "#06131A",
-    screenBg: "#EBF5F0",
-    screenText: "#083E2F",
+    screenBg: "#050b08",
+    screenText: "#4ADE80",
     border: "#19D886",
     borderAlt: "#0B7661",
     primary: "#7AF5B2",
     secondary: "#38BDF8",
     text: "#D0FFE1",
     muted: "#257F69",
-    statusDot: "#10B981",
+    statusDot: "#4ADE80",
     statusText: "LIVE // VERIFIED",
   },
   light: {
@@ -60,25 +51,25 @@ function card(theme, palette) {
   const p = palettes[palette];
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="586" viewBox="0 0 1180 586" role="img" aria-labelledby="title desc">
 <title id="title">Sanskriti Gupta hacker terminal profile</title>
-<desc id="desc">A terminal-style profile card with a crisp ASCII portrait and system information.</desc>
+<desc id="desc">A terminal-style profile card with Sanskriti Gupta's ASCII portrait and system information.</desc>
 <defs>
   <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${p.background}"/><stop offset="1" stop-color="${p.panel}"/></linearGradient>
-  <pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#000000" opacity=".06"/></pattern>
+  <pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#38BDF8" opacity=".04"/></pattern>
   <linearGradient id="scanBeam" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0%" stop-color="${p.primary}" stop-opacity="0"/>
-    <stop offset="50%" stop-color="${p.primary}" stop-opacity="0.3"/>
+    <stop offset="50%" stop-color="${p.primary}" stop-opacity="0.28"/>
     <stop offset="100%" stop-color="${p.primary}" stop-opacity="0"/>
   </linearGradient>
   <clipPath id="photoClip"><rect x="30" y="90" width="460" height="420" rx="12"/></clipPath>
   <style>
-    .mono { font-family: "Courier New", Consolas, monospace; }
+    .mono { font-family: "SFMono-Regular", "JetBrains Mono", "Fira Code", Consolas, "DejaVu Sans Mono", monospace; }
     .key { fill: ${p.primary}; font-size: 15px; font-weight: bold; }
-    .ascii { fill: ${p.screenText}; font-size: ${ASCII_FONT_SIZE}px; line-height: ${ASCII_LINE_HEIGHT}px; letter-spacing: 0.15px; }
+    .ascii { fill: ${p.screenText}; font-size: 10px; white-space: pre; }
     .value { fill: ${p.text}; font-size: 15px; }
     .label { fill: ${p.secondary}; font-size: 11px; letter-spacing: 2px; }
     .muted { fill: ${p.muted}; font-size: 11px; letter-spacing: 1px; }
-    .screen-label { fill: #087F5B; font-size: 11px; letter-spacing: 1.5px; font-weight: bold; }
-    .screen-muted { fill: #417566; font-size: 10px; letter-spacing: 1px; }
+    .screen-label { fill: ${p.primary}; font-size: 11px; letter-spacing: 1.5px; font-weight: bold; }
+    .screen-muted { fill: ${p.muted}; font-size: 10px; letter-spacing: 1px; }
     .blink { animation: blink 1.5s ease-in-out infinite alternate; }
     @keyframes blink { 0% { opacity: 1; } 100% { opacity: 0.25; } }
   </style>
@@ -90,16 +81,17 @@ function card(theme, palette) {
 <text x="590" y="25" text-anchor="middle" class="mono muted">sanskriti@forge ~ % ./profile.sh --live</text>
 <circle cx="1030" cy="20" r="4" fill="${p.statusDot}" class="blink"/><text x="1042" y="24" class="mono muted">${p.statusText}</text>
 <text x="30" y="48" class="mono label">VISUAL.MAP</text><text x="524" y="48" class="mono label">SYSTEM.INFO</text>
-<g clip-path="url(#photoClip)">
-  <rect x="30" y="90" width="460" height="420" fill="${p.screenBg}"/>
-  <text class="mono ascii" xml:space="preserve">${ascii}</text>
-  <rect x="30" y="90" width="460" height="420" fill="url(#scanlines)"/>
-  <rect x="30" y="90" width="460" height="28" fill="url(#scanBeam)" pointer-events="none">
-    <animate attributeName="y" values="70;490;70" dur="6s" repeatCount="indefinite"/>
+
+<!-- Embedded Visual Map Display -->
+<svg x="30" y="90" width="460" height="420" viewBox="0 0 692 630" clip-path="url(#photoClip)">
+  <rect width="692" height="630" rx="12" fill="${p.screenBg}"/>
+  <text x="16" y="26" class="mono ascii" xml:space="preserve">${asciiDarkTspans}</text>
+  <rect width="692" height="630" fill="url(#scanlines)"/>
+  <rect x="0" y="0" width="692" height="42" fill="url(#scanBeam)" pointer-events="none">
+    <animate attributeName="y" values="-50;630;-50" dur="5.5s" repeatCount="indefinite"/>
   </rect>
-  <text x="48" y="114" class="mono screen-label">PHOTO.SIGNAL // RECOGNITION LOCK</text>
-  <text x="48" y="496" class="mono screen-muted">identity verified // telemetry online</text>
-</g>
+</svg>
+
 <g class="mono">
   <text x="524" y="92" class="key">sanskriti@forge</text>
   <text x="524" y="126" class="key">Subject ........ </text><text x="700" y="126" class="value">Sanskriti Gupta</text>
@@ -138,4 +130,4 @@ if (existsSync(readmePath)) {
   writeFileSync(readmePath, readme);
 }
 
-console.log("Terminal cards generated successfully.");
+console.log("Terminal cards successfully updated with user provided ASCII SVG.");
