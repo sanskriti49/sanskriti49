@@ -95,7 +95,7 @@ function buildDarkSvg() {
     text, tspan { white-space: pre; }
     
     .term-label { font-family: 'Courier New', Consolas, monospace; font-size: 12px; fill: #86EFAC; letter-spacing: 0.5px; opacity: 0.8; }
-    .scan-label { font-family: 'Courier New', Consolas, monospace; font-size: 10px; fill: #F87171; letter-spacing: 1px; }
+    .status-label { font-family: 'Courier New', Consolas, monospace; font-size: 10px; fill: #22C55E; letter-spacing: 1px; font-weight: bold; }
     .panel-title-blue { font-family: 'Courier New', Consolas, monospace; font-size: 11px; fill: #38BDF8; letter-spacing: 2px; opacity: 0.85; }
     .panel-title { font-family: 'Courier New', Consolas, monospace; font-size: 11px; fill: #22C55E; letter-spacing: 2px; opacity: 0.85; }
     .cursor-blink { fill: #22C55E; }
@@ -111,10 +111,8 @@ function buildDarkSvg() {
   <circle cx="42" cy="20" r="5" fill="#F59E0B"><animate attributeName="opacity" values="1;0.55;1" dur="4s" begin="0.3s" repeatCount="indefinite"/></circle>
   <circle cx="60" cy="20" r="5" fill="#10B981"><animate attributeName="opacity" values="1;0.55;1" dur="4s" begin="0.6s" repeatCount="indefinite"/></circle>
   <text x="590" y="25" text-anchor="middle" class="term-label">sanskriti@forge ~ % ./profile.sh --live</text>
-  <circle cx="1070" cy="20" r="4" fill="#F87171">
-    <animate attributeName="opacity" values="1;0.15;1" dur="1.1s" repeatCount="indefinite"/>
-  </circle>
-  <text x="1080" y="24" class="scan-label">SCANNING</text>
+  <circle cx="1070" cy="20" r="4" fill="#22C55E"/>
+  <text x="1080" y="24" class="status-label">ONLINE</text>
 </g>
 
 <g transform="translate(0,44)">
@@ -156,10 +154,6 @@ ${darkTspans}
     <animate attributeName="opacity" values="0;0;1;0;1;0;1;0" keyTimes="0;0.01;0.02;0.3;0.5;0.7;0.85;1" dur="1.4s" begin="3.66s" repeatCount="indefinite"/>
   </rect>
 </g>
-
-<rect x="0" y="-70" width="1180" height="70" fill="url(#scanGrad)" opacity="0.7" style="mix-blend-mode:screen">
-  <animateTransform attributeName="transform" type="translate" from="0 -70" to="0 630" dur="4.2s" repeatCount="indefinite"/>
-</rect>
 
 <rect x="3" y="3" width="1174" height="580" rx="16" fill="none" stroke="url(#borderGrad)" stroke-width="2" opacity="0.8">
   <animate attributeName="opacity" values="0.5;0.95;0.5" dur="3.2s" repeatCount="indefinite"/>
@@ -226,7 +220,7 @@ function buildLightSvg() {
     text, tspan { white-space: pre; }
     
     .term-label { font-family: 'Courier New', Consolas, monospace; font-size: 12px; fill: #0D9488; letter-spacing: 0.5px; opacity: 0.8; }
-    .scan-label { font-family: 'Courier New', Consolas, monospace; font-size: 10px; fill: #DC2626; letter-spacing: 1px; }
+    .status-label { font-family: 'Courier New', Consolas, monospace; font-size: 10px; fill: #059669; letter-spacing: 1px; font-weight: bold; }
     .panel-title { font-family: 'Courier New', Consolas, monospace; font-size: 11px; fill: #059669; letter-spacing: 2px; opacity: 0.85; }
     .cursor-blink { fill: #059669; }
   </style>
@@ -241,10 +235,8 @@ function buildLightSvg() {
   <circle cx="42" cy="20" r="5" fill="#FBBF24"><animate attributeName="opacity" values="1;0.55;1" dur="4s" begin="0.3s" repeatCount="indefinite"/></circle>
   <circle cx="60" cy="20" r="5" fill="#34D399"><animate attributeName="opacity" values="1;0.55;1" dur="4s" begin="0.6s" repeatCount="indefinite"/></circle>
   <text x="590" y="25" text-anchor="middle" class="term-label">sanskriti@forge ~ % ./profile.sh --live</text>
-  <circle cx="1070" cy="20" r="4" fill="#EF4444">
-    <animate attributeName="opacity" values="1;0.15;1" dur="1.1s" repeatCount="indefinite"/>
-  </circle>
-  <text x="1080" y="24" class="scan-label">SCANNING</text>
+  <circle cx="1070" cy="20" r="4" fill="#059669"/>
+  <text x="1080" y="24" class="status-label">ONLINE</text>
 </g>
 
 <g transform="translate(0,44)">
@@ -286,10 +278,6 @@ ${lightTspans}
     <animate attributeName="opacity" values="0;0;1;0;1;0;1;0" keyTimes="0;0.01;0.02;0.3;0.5;0.7;0.85;1" dur="1.4s" begin="3.66s" repeatCount="indefinite"/>
   </rect>
 </g>
-
-<rect x="0" y="-70" width="1180" height="70" fill="url(#scanGrad)" opacity="0.7" style="mix-blend-mode:screen">
-  <animateTransform attributeName="transform" type="translate" from="0 -70" to="0 630" dur="4.2s" repeatCount="indefinite"/>
-</rect>
 
 <rect x="3" y="3" width="1174" height="580" rx="16" fill="none" stroke="url(#borderGrad)" stroke-width="2" opacity="0.8">
   <animate attributeName="opacity" values="0.5;0.95;0.5" dur="3.2s" repeatCount="indefinite"/>
