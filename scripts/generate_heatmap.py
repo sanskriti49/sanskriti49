@@ -31,10 +31,10 @@ query($login: String!) {
 # Intense retro-arcade green color tones for active cells
 COLORS = {
     "NONE": "#0F172A",
-    "FIRST_QUARTILE": "#9be9a8",
-    "SECOND_QUARTILE": "#40c463",
-    "THIRD_QUARTILE": "#30a14e",
-    "FOURTH_QUARTILE": "#216e39",
+    "FIRST_QUARTILE": "#0e4429",
+    "SECOND_QUARTILE": "#006d32",
+    "THIRD_QUARTILE": "#26a641",
+    "FOURTH_QUARTILE": "#39d353",
 }
 
 
@@ -217,10 +217,10 @@ def render(calendar: dict, login: str) -> str:
 <g transform="translate(140, 320)">
   <text x="0" y="8" class="legend-text">POWER NODES: LOW</text>
   <rect x="115" y="0" width="10" height="10" rx="2" fill="#0F172A" stroke="#1E293B" stroke-width="0.75"/>
-  <rect x="129" y="0" width="10" height="10" rx="2" fill="#9be9a8" stroke="#34D399" stroke-width="0.35"/>
-  <rect x="143" y="0" width="10" height="10" rx="2" fill="#40c463" stroke="#34D399" stroke-width="0.35"/>
-  <rect x="157" y="0" width="10" height="10" rx="2" fill="#30a14e" stroke="#34D399" stroke-width="0.35"/>
-  <rect x="171" y="0" width="10" height="10" rx="2" fill="#216e39" stroke="#34D399" stroke-width="0.35"/>
+  <rect x="129" y="0" width="10" height="10" rx="2" fill="#0e4429" stroke="#006d32" stroke-width="0.35"/>
+  <rect x="143" y="0" width="10" height="10" rx="2" fill="#006d32" stroke="#196c2e" stroke-width="0.35"/>
+  <rect x="157" y="0" width="10" height="10" rx="2" fill="#26a641" stroke="#2ea043" stroke-width="0.35"/>
+  <rect x="171" y="0" width="10" height="10" rx="2" fill="#39d353" stroke="#56d364" stroke-width="0.35"/>
   <text x="189" y="8" class="legend-text">OVERDRIVE</text>
 </g>
 
