@@ -8,7 +8,7 @@ import json
 import os
 import sys
 import urllib.request
-from datetime import date, datetime, timedelta
+from datetime import date, datetime
 from pathlib import Path
 
 
@@ -89,6 +89,17 @@ def month_labels(weeks: list[dict]) -> str:
     return "\n  ".join(labels)
 
 
+def update_readme_cache_buster(path: Path, version: str) -> None:
+    if not path.exists():
+        return
+    content = path.read_text(encoding="utf-8")
+    marker = "./assets/contribution-heatmap.svg"
+    content = content.replace(marker, f"{marker}?v={version}")
+    import re
+    content = re.sub(r"\./assets/contribution-heatmap\.svg\?v=[^\" )]+", f"{marker}?v={version}", content)
+    path.write_text(content, encoding="utf-8")
+
+
 def render(calendar: dict, login: str) -> str:
     weeks = calendar["weeks"][-53:]
     cells, peak, last_point = cell_markup(weeks)
@@ -99,8 +110,8 @@ def render(calendar: dict, login: str) -> str:
 <desc id="desc">A dynamic arcade-style contribution calendar updated from GitHub data.</desc>
 <defs>
   <radialGradient id="bg" cx="30%" cy="20%" r="80%"><stop stop-color="#080C16"/><stop offset="100%" stop-color="#03060F"/></radialGradient>
-  <linearGradient id="border" x1="0%" y1="0%" x2="100%" y2="100%"><stop stop-color="#22C55E"/><stop offset="50%" stop-color="#10B981"/><stop offset="100%" stop-color="#38BDF8"/></linearGradient>
-  <linearGradient id="scan" x1="0%" y1="0%" x2="0%" y2="100%"><stop stop-color="#22C55E" stop-opacity="0"/><stop offset="50%" stop-color="#86EFAC" stop-opacity=".4"/><stop offset="100%" stop-color="#22C55E" stop-opacity="0"/></linearGradient>
+  <linearGradient id="border" x1="0%" y1="0%" x2="100%" y2="100%"><stop stop-color="#38BDF8"/><stop offset="50%" stop-color="#8B5CF6"/><stop offset="100%" stop-color="#22D3EE"/></linearGradient>
+  <linearGradient id="scan" x1="0%" y1="0%" x2="0%" y2="100%"><stop stop-color="#38BDF8" stop-opacity="0"/><stop offset="50%" stop-color="#A78BFA" stop-opacity=".55"/><stop offset="100%" stop-color="#38BDF8" stop-opacity="0"/></linearGradient>
   <pattern id="lines" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#7DD3FC" opacity=".035"/></pattern>
   <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
   <style>
@@ -127,9 +138,9 @@ def render(calendar: dict, login: str) -> str:
 <g class="cell">{cells}</g>
 <rect class="scan" x="138" y="84" width="936" height="3" fill="url(#scan)" opacity=".6"/>
 <g transform="translate({last_point[0]} {last_point[1]})" filter="url(#glow)">
-  <circle r="13" fill="none" stroke="#22D3EE" opacity=".75"><animate attributeName="r" values="8;20;8" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".9;0;.9" dur="2.4s" repeatCount="indefinite"/></circle>
+  <circle r="13" fill="none" stroke="#38BDF8" opacity=".75"><animate attributeName="r" values="8;20;8" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".9;0;.9" dur="2.4s" repeatCount="indefinite"/></circle>
   <circle r="4" fill="#FACC15" stroke="#E0F2FE" stroke-width="1"/>
-  <path d="M0 11l-5 15 5-3 5 3z" fill="#38BDF8"><animateTransform attributeName="transform" type="translate" values="0 0;0 3;0 0" dur="1s" repeatCount="indefinite"/></path>
+  <path d="M0 11l-5 15 5-3 5 3z" fill="#A78BFA"><animateTransform attributeName="transform" type="translate" values="0 0;0 3;0 0" dur="1s" repeatCount="indefinite"/></path>
 </g>
 <g class="meta"><text x="140" y="244">POWER NODES: LOW</text><rect x="255" y="234" width="12" height="12" rx="2" fill="#0F172A"/><rect x="273" y="234" width="12" height="12" rx="2" fill="#166534"/><rect x="291" y="234" width="12" height="12" rx="2" fill="#22C55E"/><rect x="309" y="234" width="12" height="12" rx="2" fill="#A7F3D0"/><text x="330" y="244">OVERDRIVE</text>
 <text x="725" y="320">GITHUB CONTRIBUTION GRID // SECTOR: SANSKRITI49</text></g>
@@ -145,6 +156,7 @@ def main() -> None:
     output = Path(os.environ.get("HEATMAP_OUTPUT", "assets/contribution-heatmap.svg"))
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(render(fetch_calendar(login, token), login), encoding="utf-8")
+    update_readme_cache_buster(Path("README.md"), date.today().strftime("%Y%m%d"))
 
 
 if __name__ == "__main__":

@@ -76,22 +76,22 @@
 
   <g class="mono">
     <text x="524" y="84" class="heading">Sanskriti Gupta</text>
-    <text x="524" y="112" class="key">Subject       </text><text x="700" y="112" class="value">Software Engineer / Full-stack Builder</text>
-    <text x="524" y="136" class="key">Education     </text><text x="700" y="136" class="value">B.Tech CSE @ VIT Bhopal | CGPA 8.54</text>
-    <text x="524" y="160" class="key">Experience    </text><text x="700" y="160" class="value">Software Engineer Intern @ GeekyAnts</text>
-    <text x="524" y="184" class="key">Status        </text><text x="700" y="184" class="value">Building · Learning · Shipping</text>
+    <text x="524" y="112" class="key">Subject ...... </text><text x="700" y="112" class="value">Software Engineer / Full-stack Builder</text>
+    <text x="524" y="136" class="key">Education .... </text><text x="700" y="136" class="value">B.Tech CSE @ VIT Bhopal | CGPA 8.54</text>
+    <text x="524" y="160" class="key">Experience ... </text><text x="700" y="160" class="value">Software Engineer Intern @ GeekyAnts</text>
+    <text x="524" y="184" class="key">Status ....... </text><text x="700" y="184" class="value">Building · Learning · Shipping</text>
     <line x1="524" y1="208" x2="1145" y2="208" stroke="#1E3A2F"/>
     <text x="524" y="236" class="label">CORE EXPERTISE</text>
-    <text x="524" y="264" class="key">Frontend      </text><text x="700" y="264" class="value">React, Next.js, Redux, Tailwind, GSAP</text>
-    <text x="524" y="288" class="key">Backend       </text><text x="700" y="288" class="value">Node.js, Express, REST, Socket.IO, JWT</text>
-    <text x="524" y="312" class="key">Data          </text><text x="700" y="312" class="value">PostgreSQL, MongoDB, Redis, SQL</text>
-    <text x="524" y="336" class="key">Cloud         </text><text x="700" y="336" class="value">AWS, Docker, Terraform, CI/CD</text>
-    <text x="524" y="360" class="key">Languages     </text><text x="700" y="360" class="value">Java, JavaScript, TypeScript, Python</text>
+    <text x="524" y="264" class="key">Frontend ..... </text><text x="700" y="264" class="value">React, Next.js, Redux, Tailwind, GSAP</text>
+    <text x="524" y="288" class="key">Backend ...... </text><text x="700" y="288" class="value">Node.js, Express, REST, Socket.IO, JWT</text>
+    <text x="524" y="312" class="key">Data ......... </text><text x="700" y="312" class="value">PostgreSQL, MongoDB, Redis, SQL</text>
+    <text x="524" y="336" class="key">Cloud ........ </text><text x="700" y="336" class="value">AWS, Docker, Terraform, CI/CD</text>
+    <text x="524" y="360" class="key">Languages .... </text><text x="700" y="360" class="value">Java, JavaScript, TypeScript, Python</text>
     <line x1="524" y1="384" x2="1145" y2="384" stroke="#1E3A2F"/>
     <text x="524" y="412" class="label">SIGNALS</text>
-    <text x="524" y="440" class="key">Achievements  </text><text x="700" y="440" class="value">AWS CCP · CodeVita Top 3%</text>
-    <text x="524" y="464" class="key">Community     </text><text x="700" y="464" class="value">GDG technical mentor and builder</text>
-    <text x="524" y="500" class="key">Contact       </text><text x="700" y="500" class="value">github.com/sanskriti49</text>
+    <text x="524" y="440" class="key">Achievements . </text><text x="700" y="440" class="value">AWS CCP · CodeVita Top 3%</text>
+    <text x="524" y="464" class="key">Community .... </text><text x="700" y="464" class="value">GDG technical mentor and builder</text>
+    <text x="524" y="500" class="key">Contact ...... </text><text x="700" y="500" class="value">github.com/sanskriti49</text>
     <text x="524" y="524" class="muted">profile state: ready to collaborate_</text>
   </g>
 </svg>

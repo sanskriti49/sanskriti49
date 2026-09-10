@@ -1,0 +1,27 @@
+name: Profile quality and security
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run TDD heatmap tests
+        run: python -m unittest discover -s tests -v
+      - name: STRIDE checks
+        shell: bash
+        run: |
+          grep -q 'Authorization' scripts/generate_heatmap.py
+          grep -q 'timeout=30' scripts/generate_heatmap.py
+          grep -q 'contents: write' .github/workflows/update-profile-heatmap.yml
+          test "$(grep -o 'contribution-heatmap.svg' README.md | wc -l)" -eq 1
