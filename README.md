@@ -6,6 +6,6 @@
   <img src="./assets/terminal-card-dark.svg?v=20260910-cyan" alt="Sanskriti's ASCII hacker terminal profile card" width="100%" />
 </picture>
 
-<img src="./assets/contribution-heatmap.svg?v=20260911" alt="Sanskriti Gupta animated contribution heatmap card" width="100%" />
+<img src="./assets/contribution-heatmap.svg?v=20260912" alt="Sanskriti Gupta animated contribution heatmap card" width="100%" />
 
 </div>
