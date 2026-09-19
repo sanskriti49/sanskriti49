@@ -52,7 +52,7 @@
 
 <!-- Retro Arcade Top HUD -->
 <g id="arcade-hud">
-  <text x="24" y="32"><tspan class="hud-label-gold">SCORE: </tspan><tspan class="hud-val-gold">423 PTS</tspan></text>
+  <text x="24" y="32"><tspan class="hud-label-gold">SCORE: </tspan><tspan class="hud-val-gold">426 PTS</tspan></text>
   <text x="320" y="32"><tspan class="hud-label-cyan">RANK: </tspan><tspan class="hud-val-cyan">LVL 42 &#183; FULL-STACK ARCHITECT</tspan></text>
   <text x="680" y="32"><tspan class="hud-label-rose">COMBO: </tspan><tspan class="hud-val-rose">x14 SHIPPER</tspan></text>
   <text x="930" y="32" class="hud-label-cyan">SHIELDS: 100%</text>
@@ -479,7 +479,8 @@
   <rect x="1076" y="124" width="14" height="14" rx="2.5" fill="#006d32" stroke="#34D399" stroke-width="0.35"><title>5 contributions on 2026-09-15</title></rect>
   <rect x="1076" y="142" width="14" height="14" rx="2.5" fill="#0F172A" stroke="#1E293B" stroke-width="0.75"><title>0 contributions on 2026-09-16</title></rect>
   <rect x="1076" y="160" width="14" height="14" rx="2.5" fill="#0e4429" stroke="#34D399" stroke-width="0.35"><title>2 contributions on 2026-09-17</title></rect>
-  <rect x="1076" y="178" width="14" height="14" rx="2.5" fill="#0F172A" stroke="#1E293B" stroke-width="0.75"><title>0 contributions on 2026-09-18</title></rect>
+  <rect x="1076" y="178" width="14" height="14" rx="2.5" fill="#0e4429" stroke="#34D399" stroke-width="0.35"><title>3 contributions on 2026-09-18</title></rect>
+  <rect x="1076" y="196" width="14" height="14" rx="2.5" fill="#0F172A" stroke="#1E293B" stroke-width="0.75"><title>0 contributions on 2026-09-19</title></rect>
 </g>
 
 <!-- Footer Legend and Sector Title -->
