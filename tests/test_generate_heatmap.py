@@ -35,7 +35,9 @@ class HeatmapGeneratorTests(unittest.TestCase):
         self.assertIn("943 PTS", svg)
         self.assertIn("contribution on 2025-01-01", svg)
         self.assertIn("@keyframes scan", svg)
-        self.assertIn("animateTransform", svg)
+        self.assertIn('attributeName="r"', svg)
+        self.assertIn("<animateMotion dur=\"12s\"", svg)
+        self.assertIn('href="#jetRoute"', svg)
 
     def test_render_escapes_login(self):
         svg = MODULE.render(calendar_fixture(), "<profile>")
