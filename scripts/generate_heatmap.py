@@ -139,12 +139,10 @@ def render(calendar: dict, login: str) -> str:
 <rect class="scan" x="138" y="84" width="936" height="3" fill="url(#scan)" opacity=".6"/>
 <path id="jetRoute" d="M140 95 C300 215 420 95 580 185 S850 95 1070 185" fill="none" stroke="none"/>
 <g filter="url(#glow)">
-  <animateMotion dur="12s" repeatCount="indefinite" rotate="auto">
-    <mpath href="#jetRoute"/>
-  </animateMotion>
+  <animateMotion dur="12s" repeatCount="indefinite" rotate="auto" path="M140 95 C300 215 420 95 580 185 S850 95 1070 185"/>
   <circle r="13" fill="none" stroke="#38BDF8" opacity=".75"><animate attributeName="r" values="8;20;8" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".9;0;.9" dur="2.4s" repeatCount="indefinite"/></circle>
   <circle r="4" fill="#FACC15" stroke="#E0F2FE" stroke-width="1"/>
-  <path d="M0 11l-5 15 5-3 5 3z" fill="#A78BFA"/>
+  <g transform="scale(1.8)"><path d="M0 11l-5 15 5-3 5 3z" fill="#A78BFA"/></g>
 </g>
 <g class="meta"><text x="140" y="244">POWER NODES: LOW</text><rect x="255" y="234" width="12" height="12" rx="2" fill="#0F172A"/><rect x="273" y="234" width="12" height="12" rx="2" fill="#166534"/><rect x="291" y="234" width="12" height="12" rx="2" fill="#22C55E"/><rect x="309" y="234" width="12" height="12" rx="2" fill="#A7F3D0"/><text x="330" y="244">OVERDRIVE</text>
 <text x="725" y="320">GITHUB CONTRIBUTION GRID // SECTOR: SANSKRITI49</text></g>

@@ -20,7 +20,7 @@
 </defs>
 <rect width="1180" height="340" rx="16" fill="url(#bg)"/><rect width="1180" height="340" rx="16" fill="url(#lines)"/>
 <rect x="1" y="1" width="1178" height="338" rx="16" fill="none" stroke="url(#border)" stroke-width="1.5"/>
-<g class="hud"><text x="24" y="32" class="gold">SCORE: <tspan fill="#FEF08A">427 PTS</tspan></text>
+<g class="hud"><text x="24" y="32" class="gold">SCORE: <tspan fill="#FEF08A">430 PTS</tspan></text>
 <text x="320" y="32" class="cyan">RANK: <tspan fill="#E0F2FE">LVL 4 // FULL-STACK BUILDER</tspan></text>
 <text x="680" y="32" class="rose">PEAK: <tspan fill="#FECDD3">48 CONTRIBUTIONS/DAY</tspan></text>
 <text x="930" y="32" class="cyan">SYNC: <tspan fill="#E0F2FE">2026-09-20</tspan></text></g>
@@ -403,16 +403,14 @@
   <rect x="1058" y="160" width="14" height="14" rx="2.5" fill="#166534" stroke="#1E293B" stroke-width="0.75"><title>2 contributions on 2026-09-17</title></rect>
   <rect x="1058" y="178" width="14" height="14" rx="2.5" fill="#166534" stroke="#1E293B" stroke-width="0.75"><title>3 contributions on 2026-09-18</title></rect>
   <rect x="1058" y="196" width="14" height="14" rx="2.5" fill="#166534" stroke="#1E293B" stroke-width="0.75"><title>1 contribution on 2026-09-19</title></rect>
-  <rect x="1076" y="88" width="14" height="14" rx="2.5" fill="#0F172A" stroke="#1E293B" stroke-width="0.75"><title>0 contributions on 2026-09-20</title></rect></g>
+  <rect x="1076" y="88" width="14" height="14" rx="2.5" fill="#166534" stroke="#1E293B" stroke-width="0.75"><title>3 contributions on 2026-09-20</title></rect></g>
 <rect class="scan" x="138" y="84" width="936" height="3" fill="url(#scan)" opacity=".6"/>
 <path id="jetRoute" d="M140 95 C300 215 420 95 580 185 S850 95 1070 185" fill="none" stroke="none"/>
 <g filter="url(#glow)">
-  <animateMotion dur="12s" repeatCount="indefinite" rotate="auto">
-    <mpath href="#jetRoute"/>
-  </animateMotion>
+  <animateMotion dur="12s" repeatCount="indefinite" rotate="auto" path="M140 95 C300 215 420 95 580 185 S850 95 1070 185"/>
   <circle r="13" fill="none" stroke="#38BDF8" opacity=".75"><animate attributeName="r" values="8;20;8" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".9;0;.9" dur="2.4s" repeatCount="indefinite"/></circle>
   <circle r="4" fill="#FACC15" stroke="#E0F2FE" stroke-width="1"/>
-  <path d="M0 11l-5 15 5-3 5 3z" fill="#A78BFA"/>
+  <g transform="scale(1.8)"><path d="M0 11l-5 15 5-3 5 3z" fill="#A78BFA"/></g>
 </g>
 <g class="meta"><text x="140" y="244">POWER NODES: LOW</text><rect x="255" y="234" width="12" height="12" rx="2" fill="#0F172A"/><rect x="273" y="234" width="12" height="12" rx="2" fill="#166534"/><rect x="291" y="234" width="12" height="12" rx="2" fill="#22C55E"/><rect x="309" y="234" width="12" height="12" rx="2" fill="#A7F3D0"/><text x="330" y="244">OVERDRIVE</text>
 <text x="725" y="320">GITHUB CONTRIBUTION GRID // SECTOR: SANSKRITI49</text></g>

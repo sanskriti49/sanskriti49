@@ -126,6 +126,17 @@ function buildDarkSvg() {
 ${darkTspans}
     </text>
   </g>
+  <g id="face-radar" opacity="0.9">
+    <circle cx="260" cy="275" r="58" fill="none" stroke="#22D3EE" stroke-width="1" opacity=".5"/>
+    <circle cx="260" cy="275" r="42" fill="none" stroke="#22D3EE" stroke-width=".7" opacity=".35"/>
+    <path d="M260 211V339M196 275H324" stroke="#22D3EE" stroke-width=".6" opacity=".3"/>
+    <path d="M260 275L306 234" stroke="#A78BFA" stroke-width="2" opacity=".9">
+      <animateTransform attributeName="transform" type="rotate" from="0 260 275" to="360 260 275" dur="5s" repeatCount="indefinite"/>
+    </path>
+    <circle cx="260" cy="275" r="4" fill="#FACC15">
+      <animate attributeName="r" values="3;6;3" dur="1.8s" repeatCount="indefinite"/>
+    </circle>
+  </g>
 
   <g clip-path="url(#lc0)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="42" class="head">sanskriti@forge</tspan><tspan class="cc"> -——————————————————————————————————————————-—-</tspan></text></g>
   <g clip-path="url(#lc1)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="66" class="cc">. </tspan><tspan class="key">Subject</tspan><tspan class="cc">: ................ </tspan><tspan class="value">Sanskriti Gupta</tspan></text></g>
@@ -249,6 +260,17 @@ function buildLightSvg() {
     <text x="30" y="0" class="ascii">
 ${lightTspans}
     </text>
+  </g>
+  <g id="face-radar" opacity="0.75">
+    <circle cx="260" cy="275" r="58" fill="none" stroke="#0284C7" stroke-width="1" opacity=".5"/>
+    <circle cx="260" cy="275" r="42" fill="none" stroke="#0284C7" stroke-width=".7" opacity=".35"/>
+    <path d="M260 211V339M196 275H324" stroke="#0284C7" stroke-width=".6" opacity=".3"/>
+    <path d="M260 275L306 234" stroke="#7C3AED" stroke-width="2" opacity=".9">
+      <animateTransform attributeName="transform" type="rotate" from="0 260 275" to="360 260 275" dur="5s" repeatCount="indefinite"/>
+    </path>
+    <circle cx="260" cy="275" r="4" fill="#D97706">
+      <animate attributeName="r" values="3;6;3" dur="1.8s" repeatCount="indefinite"/>
+    </circle>
   </g>
 
   <g clip-path="url(#lc0)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="42" class="head">sanskriti@forge</tspan><tspan class="cc"> -——————————————————————————————————————————-—-</tspan></text></g>
