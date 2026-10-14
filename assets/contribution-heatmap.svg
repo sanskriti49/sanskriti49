@@ -2,6 +2,11 @@
 <title id="title">sanskriti49 contribution heatmap</title>
 <desc id="desc">Retro arcade defense grid contribution calendar with starfighter patrol kinematics.</desc>
 <defs>
+  <linearGradient id="scanBand" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#22D3EE" stop-opacity="0.03"/>
+    <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.18"/>
+  </linearGradient>
+
   <radialGradient id="bgGlow" cx="30%" cy="20%" r="80%">
     <stop offset="0%" stop-color="#080C16"/>
     <stop offset="100%" stop-color="#03060F"/>
@@ -30,6 +35,15 @@
   </pattern>
 
   <style>
+    .patrol { animation: patrol 26s steps(52, end) infinite; }
+@keyframes patrol {
+  0%   { transform: translateX(0); }
+  50%  { transform: translateX(936px); }
+  100% { transform: translateX(0); }
+}
+    .tgt-label      { font-family: 'Courier New', Consolas, monospace; font-size: 11px; font-weight: bold; fill: #E0F2FE; }
+.tgt-label-gold { font-family: 'Courier New', Consolas, monospace; font-size: 11px; font-weight: bold; fill: #FEF08A; }
+@media (prefers-reduced-motion: reduce) { .patrol { animation: none; } }
     .hud-label-gold { font-family: 'Courier New', Consolas, monospace; font-size: 13px; fill: #FACC15; font-weight: bold; letter-spacing: 0.5px; }
     .hud-val-gold   { font-family: 'Courier New', Consolas, monospace; font-size: 13px; fill: #FEF08A; font-weight: bold; }
     .hud-label-cyan { font-family: 'Courier New', Consolas, monospace; font-size: 12px; fill: #38BDF8; font-weight: bold; letter-spacing: 0.5px; }
@@ -494,12 +508,31 @@
 <text x="1040" y="328" class="hud-meta" text-anchor="end">[ARCADE DEFENSE GRID // SECTOR: SANSKRITI-FORGE]</text>
 
 <!-- Dual-Hull Starfighter Jet & Forward Boresight Sighting Laser -->
+<!-- Faint markers on every target day, so you can see where the jet will go -->
+<g id="target-markers" fill="none" stroke="#22D3EE" stroke-width="1" stroke-dasharray="2 3" opacity="0.35">
+  <circle cx="219"  cy="167" r="11"/>
+  <circle cx="309"  cy="185" r="11"/>
+  <circle cx="975"  cy="95"  r="11"/>
+  <circle cx="993"  cy="167" r="11" stroke="#FACC15"/>
+  <circle cx="1065" cy="131" r="11"/>
+  <circle cx="1083" cy="95"  r="11"/>
+</g>
+
+<!-- Patrol lane -->
+<!-- Dual-Hull Starfighter Jet & Forward Boresight Sighting Laser -->
 <g id="starfighter">
-  <!-- Forward Boresight Sighting Laser Guide -->
+
+  <!-- Reticle: slides up/down to sit on the target day while the jet holds -->
   <g id="boresight-reticle">
-    <line x1="0" y1="-8" x2="0" y2="-180" stroke="#22D3EE" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.6" class="sighting-laser"/>
+    <animateTransform attributeName="transform" type="translate" dur="14s" repeatCount="indefinite"
+      calcMode="spline"
+      keyTimes="0;0.0429;0.1286;0.1714;0.2571;0.3571;0.4429;0.4714;0.6;0.6571;0.7429;0.7714;0.8571;1"
+      keySplines="0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1"
+      values="0,0;0,-43;0,-43;0,-25;0,-25;0,-115;0,-115;0,-43;0,-43;0,-79;0,-79;0,-115;0,-115;0,0"/>
     <circle cx="0" cy="-60" r="16" fill="none" stroke="#22D3EE" stroke-width="1.4" opacity="0.75"/>
-    <circle cx="0" cy="-60" r="24" fill="none" stroke="#38BDF8" stroke-width="1" stroke-dasharray="6 3" opacity="0.5"/>
+    <circle cx="0" cy="-60" r="24" fill="none" stroke="#38BDF8" stroke-width="1" stroke-dasharray="6 3" opacity="0.5">
+      <animateTransform attributeName="transform" type="rotate" from="0 0 -60" to="360 0 -60" dur="4s" repeatCount="indefinite"/>
+    </circle>
     <line x1="0" y1="-74" x2="0" y2="-66" stroke="#22D3EE" stroke-width="1.5"/>
     <line x1="0" y1="-54" x2="0" y2="-46" stroke="#22D3EE" stroke-width="1.5"/>
     <line x1="-14" y1="-60" x2="-6" y2="-60" stroke="#22D3EE" stroke-width="1.5"/>
@@ -508,6 +541,9 @@
       <animate attributeName="opacity" values="1;0.3;1" dur="0.6s" repeatCount="indefinite"/>
     </circle>
   </g>
+
+  <!-- Forward sighting laser (fixed, jet nose upward) -->
+  <line x1="0" y1="-8" x2="0" y2="-180" stroke="#22D3EE" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.5"/>
 
   <!-- Dual-Hull Arcade Starfighter Chassis -->
   <g transform="translate(0,0)">
@@ -555,11 +591,11 @@
     </g>
   </g>
 
-  <!-- Smooth Spline Horizontal Patrol Kinematics -->
+  <!-- Jet flies to each hot day's column and holds there -->
   <animateTransform attributeName="transform" attributeType="XML" type="translate"
-    dur="18s" repeatCount="indefinite" calcMode="spline"
-    keyTimes="0; 0.5; 1"
-    keySplines="0.45 0 0.55 1; 0.45 0 0.55 1"
-    values="147,270; 1065,270; 147,270"/>
+    dur="14s" repeatCount="indefinite" calcMode="spline"
+    keyTimes="0;0.0429;0.1286;0.1714;0.2571;0.3571;0.4429;0.4714;0.6;0.6571;0.7429;0.7714;0.8571;1"
+    keySplines="0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1"
+    values="147,270;219,270;219,270;309,270;309,270;975,270;975,270;993,270;993,270;1065,270;1065,270;1083,270;1083,270;147,270"/>
 </g>
 </svg>
