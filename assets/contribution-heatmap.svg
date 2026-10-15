@@ -36,14 +36,14 @@
 
   <style>
     .patrol { animation: patrol 26s steps(52, end) infinite; }
-@keyframes patrol {
-  0%   { transform: translateX(0); }
-  50%  { transform: translateX(936px); }
-  100% { transform: translateX(0); }
-}
+    @keyframes patrol {
+      0%   { transform: translateX(0); }
+      50%  { transform: translateX(936px); }
+      100% { transform: translateX(0); }
+    }
     .tgt-label      { font-family: 'Courier New', Consolas, monospace; font-size: 11px; font-weight: bold; fill: #E0F2FE; }
-.tgt-label-gold { font-family: 'Courier New', Consolas, monospace; font-size: 11px; font-weight: bold; fill: #FEF08A; }
-@media (prefers-reduced-motion: reduce) { .patrol { animation: none; } }
+    .tgt-label-gold { font-family: 'Courier New', Consolas, monospace; font-size: 11px; font-weight: bold; fill: #FEF08A; }
+    @media (prefers-reduced-motion: reduce) { .patrol { animation: none; } }
     .hud-label-gold { font-family: 'Courier New', Consolas, monospace; font-size: 13px; fill: #FACC15; font-weight: bold; letter-spacing: 0.5px; }
     .hud-val-gold   { font-family: 'Courier New', Consolas, monospace; font-size: 13px; fill: #FEF08A; font-weight: bold; }
     .hud-label-cyan { font-family: 'Courier New', Consolas, monospace; font-size: 12px; fill: #38BDF8; font-weight: bold; letter-spacing: 0.5px; }
@@ -66,7 +66,7 @@
 
 <!-- Retro Arcade Top HUD -->
 <g id="arcade-hud">
-  <text x="24" y="32"><tspan class="hud-label-gold">SCORE: </tspan><tspan class="hud-val-gold">498 PTS</tspan></text>
+  <text x="24" y="32"><tspan class="hud-label-gold">SCORE: </tspan><tspan class="hud-val-gold">499 PTS</tspan></text>
   <text x="320" y="32"><tspan class="hud-label-cyan">RANK: </tspan><tspan class="hud-val-cyan">LVL 42 &#183; FULL-STACK ARCHITECT</tspan></text>
   <text x="680" y="32"><tspan class="hud-label-rose">COMBO: </tspan><tspan class="hud-val-rose">x14 SHIPPER</tspan></text>
   <text x="930" y="32" class="hud-label-cyan">SHIELDS: 100%</text>
@@ -491,7 +491,8 @@
   <rect x="1076" y="88" width="14" height="14" rx="2.5" fill="#39d353" stroke="#34D399" stroke-width="0.35"><title>14 contributions on 2026-10-11</title></rect>
   <rect x="1076" y="106" width="14" height="14" rx="2.5" fill="#39d353" stroke="#34D399" stroke-width="0.35"><title>15 contributions on 2026-10-12</title></rect>
   <rect x="1076" y="124" width="14" height="14" rx="2.5" fill="#0e4429" stroke="#34D399" stroke-width="0.35"><title>2 contributions on 2026-10-13</title></rect>
-  <rect x="1076" y="142" width="14" height="14" rx="2.5" fill="#0F172A" stroke="#1E293B" stroke-width="0.75"><title>0 contributions on 2026-10-14</title></rect>
+  <rect x="1076" y="142" width="14" height="14" rx="2.5" fill="#0e4429" stroke="#34D399" stroke-width="0.35"><title>1 contribution on 2026-10-14</title></rect>
+  <rect x="1076" y="160" width="14" height="14" rx="2.5" fill="#0F172A" stroke="#1E293B" stroke-width="0.75"><title>0 contributions on 2026-10-15</title></rect>
 </g>
 
 <!-- Footer Legend and Sector Title -->
