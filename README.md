@@ -6,6 +6,6 @@
   <img src="./assets/terminal_card.svg" alt="Terminal card: Sanskriti Gupta" width="100%" />
 </picture>
 
-<img src="./assets/contribution-heatmap.svg?v=20261110" alt="Sanskriti Gupta animated contribution heatmap card" width="100%" />
+<img src="./assets/contribution-heatmap.svg?v=20261111" alt="Sanskriti Gupta animated contribution heatmap card" width="100%" />
 
 </div>
