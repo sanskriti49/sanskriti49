@@ -28,13 +28,13 @@ query($login: String!) {
 }
 """
 
-# Intense retro-arcade green color tones for active cells
+# Plum grid with a mint activity ramp that matches the CRT in the profile cover.
 COLORS = {
-    "NONE": "#0F172A",
-    "FIRST_QUARTILE": "#0e4429",
-    "SECOND_QUARTILE": "#006d32",
-    "THIRD_QUARTILE": "#26a641",
-    "FOURTH_QUARTILE": "#39d353",
+    "NONE": "#2C1536",
+    "FIRST_QUARTILE": "#235340",
+    "SECOND_QUARTILE": "#31795A",
+    "THIRD_QUARTILE": "#62B874",
+    "FOURTH_QUARTILE": "#B1F992",
 }
 
 
@@ -68,10 +68,10 @@ def cell_markup(weeks: list[dict]) -> tuple[str, int]:
             y = 88 + row * 18
             color = COLORS[day["contributionLevel"]]
             if count > 0:
-                stroke = '#34D399'
+                stroke = '#8EDE94'
                 stroke_width = '0.35'
             else:
-                stroke = '#1E293B'
+                stroke = '#4B2754'
                 stroke_width = '0.75'
             label = f"{count} contribution{'s' if count != 1 else ''} on {day['date']}"
             cells.append(
@@ -105,9 +105,14 @@ def update_readme_cache_buster(path: Path, version: str) -> None:
 
 def render(calendar: dict, login: str) -> str:
     weeks = calendar["weeks"][-53:]
-    cells, peak = cell_markup(weeks)
+    cells, _ = cell_markup(weeks)
     total = calendar["totalContributions"]
     score_display = f"{total:,} PTS"
+    legend = "\n  ".join(
+        f'<rect x="{115 + index * 14}" width="10" height="10" rx="2" '
+        f'fill="{color}" stroke="#A885AE" stroke-width="0.4"/>'
+        for index, color in enumerate(COLORS.values())
+    )
 
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="340" viewBox="0 0 1180 340" role="img" aria-labelledby="title desc">
 <title id="title">{html.escape(login)} contribution heatmap</title>
@@ -119,14 +124,14 @@ def render(calendar: dict, login: str) -> str:
   </linearGradient>
 
   <radialGradient id="bgGlow" cx="30%" cy="20%" r="80%">
-    <stop offset="0%" stop-color="#080C16"/>
-    <stop offset="100%" stop-color="#03060F"/>
+    <stop offset="0%" stop-color="#26112F"/>
+    <stop offset="100%" stop-color="#170C25"/>
   </radialGradient>
 
   <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-    <stop offset="0%" stop-color="#22C55E"/>
-    <stop offset="50%" stop-color="#10B981"/>
-    <stop offset="100%" stop-color="#38BDF8"/>
+    <stop offset="0%" stop-color="#E88B8F"/>
+    <stop offset="54%" stop-color="#96547C"/>
+    <stop offset="100%" stop-color="#68B698"/>
   </linearGradient>
 
   <linearGradient id="plasmaFlame" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -142,7 +147,7 @@ def render(calendar: dict, login: str) -> str:
   </radialGradient>
 
   <pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse">
-    <rect width="4" height="1" fill="#7DD3FC" opacity="0.035"/>
+    <rect width="4" height="1" fill="#F4ADCA" opacity="0.042"/>
   </pattern>
 
   <style>
@@ -154,16 +159,11 @@ def render(calendar: dict, login: str) -> str:
     }}
     .tgt-label      {{ font-family: 'Courier New', Consolas, monospace; font-size: 11px; font-weight: bold; fill: #E0F2FE; }}
     .tgt-label-gold {{ font-family: 'Courier New', Consolas, monospace; font-size: 11px; font-weight: bold; fill: #FEF08A; }}
-    @media (prefers-reduced-motion: reduce) {{ .patrol {{ animation: none; }} }}
-    .hud-label-gold {{ font-family: 'Courier New', Consolas, monospace; font-size: 13px; fill: #FACC15; font-weight: bold; letter-spacing: 0.5px; }}
-    .hud-val-gold   {{ font-family: 'Courier New', Consolas, monospace; font-size: 13px; fill: #FEF08A; font-weight: bold; }}
-    .hud-label-cyan {{ font-family: 'Courier New', Consolas, monospace; font-size: 12px; fill: #38BDF8; font-weight: bold; letter-spacing: 0.5px; }}
-    .hud-val-cyan   {{ font-family: 'Courier New', Consolas, monospace; font-size: 12px; fill: #E0F2FE; font-weight: bold; }}
-    .hud-label-rose {{ font-family: 'Courier New', Consolas, monospace; font-size: 12px; fill: #FB7185; font-weight: bold; letter-spacing: 0.5px; }}
-    .hud-val-rose   {{ font-family: 'Courier New', Consolas, monospace; font-size: 12px; fill: #FECDD3; font-weight: bold; }}
-    .axis-label     {{ font-family: 'Courier New', Consolas, monospace; font-size: 10px; fill: #64748B; font-weight: bold; }}
-    .legend-text    {{ font-family: 'Courier New', Consolas, monospace; font-size: 9px; fill: #64748B; font-weight: bold; letter-spacing: 0.5px; }}
-    .hud-meta       {{ font-family: 'Courier New', Consolas, monospace; font-size: 10px; fill: #475569; letter-spacing: 1px; font-weight: bold; }}
+    @media (prefers-reduced-motion: reduce) {{ .patrol {{ animation: none; }} #starfighter, #stars {{ display: none; }} }}
+    .hud-label      {{ font-family: 'Courier New', Consolas, monospace; font-size: 16px; fill: #FFD7C2; font-weight: bold; letter-spacing: 1.8px; }}
+    .hud-score      {{ font-family: 'Courier New', Consolas, monospace; font-size: 20px; fill: #B1F992; font-weight: bold; }}
+    .axis-label     {{ font-family: 'Courier New', Consolas, monospace; font-size: 11px; fill: #CAA7CB; font-weight: bold; }}
+    .legend-text    {{ font-family: 'Courier New', Consolas, monospace; font-size: 10px; fill: #CAA7CB; font-weight: bold; letter-spacing: 0.5px; }}
     text {{ white-space: pre; }}
     @keyframes scan {{ from {{ transform: translateY(-190px); }} to {{ transform: translateY(210px); }} }}
   </style>
@@ -173,31 +173,14 @@ def render(calendar: dict, login: str) -> str:
 <rect width="1180" height="340" rx="16" fill="url(#bgGlow)"/>
 <rect width="1180" height="340" rx="16" fill="url(#scanlines)"/>
 <rect x="1" y="1" width="1178" height="338" rx="16" fill="none" stroke="url(#borderGrad)" stroke-width="1.5"/>
-<rect x="6" y="6" width="1168" height="328" rx="12" fill="none" stroke="#22C55E" stroke-width="0.5" opacity="0.25"/>
+<rect x="6" y="6" width="1168" height="328" rx="12" fill="none" stroke="#E88B8F" stroke-width="0.5" opacity="0.25"/>
 
 <!-- Retro Arcade Top HUD -->
 <g id="arcade-hud">
-  <text x="24" y="32"><tspan class="hud-label-gold">SCORE: </tspan><tspan class="hud-val-gold">{score_display}</tspan></text>
-  <text x="320" y="32"><tspan class="hud-label-cyan">RANK: </tspan><tspan class="hud-val-cyan">LVL 42 &#183; FULL-STACK ARCHITECT</tspan></text>
-  <text x="680" y="32"><tspan class="hud-label-rose">COMBO: </tspan><tspan class="hud-val-rose">x14 SHIPPER</tspan></text>
-  <text x="930" y="32" class="hud-label-cyan">SHIELDS: 100%</text>
-  <g transform="translate(1045, 22)">
-    <g id="shield-segments">
-      <rect x="0" y="0" width="7.5" height="12" rx="1.5" fill="#22D3EE" opacity="0.95" stroke="#0284C7" stroke-width="0.5"/>
-      <rect x="10" y="0" width="7.5" height="12" rx="1.5" fill="#22D3EE" opacity="0.95" stroke="#0284C7" stroke-width="0.5"/>
-      <rect x="20" y="0" width="7.5" height="12" rx="1.5" fill="#22D3EE" opacity="0.95" stroke="#0284C7" stroke-width="0.5"/>
-      <rect x="30" y="0" width="7.5" height="12" rx="1.5" fill="#22D3EE" opacity="0.95" stroke="#0284C7" stroke-width="0.5"/>
-      <rect x="40" y="0" width="7.5" height="12" rx="1.5" fill="#22D3EE" opacity="0.95" stroke="#0284C7" stroke-width="0.5"/>
-      <rect x="50" y="0" width="7.5" height="12" rx="1.5" fill="#22D3EE" opacity="0.95" stroke="#0284C7" stroke-width="0.5"/>
-      <rect x="60" y="0" width="7.5" height="12" rx="1.5" fill="#22D3EE" opacity="0.95" stroke="#0284C7" stroke-width="0.5"/>
-      <rect x="70" y="0" width="7.5" height="12" rx="1.5" fill="#22D3EE" opacity="0.95" stroke="#0284C7" stroke-width="0.5"/>
-      <rect x="80" y="0" width="7.5" height="12" rx="1.5" fill="#22D3EE" opacity="0.95" stroke="#0284C7" stroke-width="0.5"/>
-      <rect x="90" y="0" width="7.5" height="12" rx="1.5" fill="#22D3EE" opacity="0.95" stroke="#0284C7" stroke-width="0.5"/>
-    </g>
-  </g>
-  <line x1="20" y1="46" x2="1160" y2="46" stroke="#1E293B" stroke-width="1"/>
-  <line x1="20" y1="46" x2="160" y2="46" stroke="#FACC15" stroke-width="1" opacity="0.8"/>
-  <line x1="1020" y1="46" x2="1160" y2="46" stroke="#22D3EE" stroke-width="1" opacity="0.8"/>
+  <path d="M25 23l7 6-7 6m10 0h9" stroke="#F5A992" stroke-width="2" fill="none"/>
+  <text x="56" y="35" class="hud-label">PAST YEAR</text>
+  <text x="1154" y="35" class="hud-score" text-anchor="end">{score_display}</text>
+  <line x1="24" y1="51" x2="1156" y2="51" stroke="url(#borderGrad)" stroke-width="1" opacity="0.65"/>
 </g>
 
 <!-- Crosshairs & Cosmic Starfield -->
@@ -205,6 +188,7 @@ def render(calendar: dict, login: str) -> str:
 <path d="M1154 60 H1162 M1158 56 V64" stroke="#22D3EE" stroke-width="1" opacity="0.4"/>
 <path d="M18 318 H26 M22 314 V322" stroke="#22D3EE" stroke-width="1" opacity="0.4"/>
 <path d="M1154 318 H1162 M1158 314 V322" stroke="#22D3EE" stroke-width="1" opacity="0.4"/>
+<g id="stars">
 <circle cx="35" cy="110" r="1.1" fill="#7DD3FC"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.2s" repeatCount="indefinite"/></circle>
 <circle cx="45" cy="190" r="1.1" fill="#7DD3FC"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="3.1s" repeatCount="indefinite"/></circle>
 <circle cx="75" cy="140" r="1.1" fill="#7DD3FC"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="1.8s" repeatCount="indefinite"/></circle>
@@ -213,6 +197,7 @@ def render(calendar: dict, login: str) -> str:
 <circle cx="1120" cy="180" r="1.1" fill="#7DD3FC"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="1.9s" repeatCount="indefinite"/></circle>
 <circle cx="1145" cy="130" r="1.1" fill="#7DD3FC"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="3.4s" repeatCount="indefinite"/></circle>
 <circle cx="1105" cy="220" r="1.1" fill="#7DD3FC"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="2.1s" repeatCount="indefinite"/></circle>
+</g>
 
 <!-- Month and Day Grid Axes -->
 <g id="axes">
@@ -230,15 +215,9 @@ def render(calendar: dict, login: str) -> str:
 <!-- Footer Legend and Sector Title -->
 <g transform="translate(140, 320)">
   <text x="0" y="8" class="legend-text">POWER NODES: LOW</text>
-  <rect x="115" y="0" width="10" height="10" rx="2" fill="#0F172A" stroke="#1E293B" stroke-width="0.75"/>
-  <rect x="129" y="0" width="10" height="10" rx="2" fill="#0e4429" stroke="#006d32" stroke-width="0.35"/>
-  <rect x="143" y="0" width="10" height="10" rx="2" fill="#006d32" stroke="#196c2e" stroke-width="0.35"/>
-  <rect x="157" y="0" width="10" height="10" rx="2" fill="#26a641" stroke="#2ea043" stroke-width="0.35"/>
-  <rect x="171" y="0" width="10" height="10" rx="2" fill="#39d353" stroke="#56d364" stroke-width="0.35"/>
+  {legend}
   <text x="189" y="8" class="legend-text">OVERDRIVE</text>
 </g>
-
-<text x="1040" y="328" class="hud-meta" text-anchor="end">[ARCADE DEFENSE GRID // SECTOR: SANSKRITI-FORGE]</text>
 
 <!-- Dual-Hull Starfighter Jet & Forward Boresight Sighting Laser -->
 <!-- Faint markers on every target day, so you can see where the jet will go -->
