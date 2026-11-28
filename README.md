@@ -1,9 +1,7 @@
-<img src="./assets/space-terminal-cover.webp" alt="Sanskriti Gupta. A pixel-art terminal overlooks a ringed planet." width="100%" />
-
-<p align="center">
-  <strong>Full-stack &amp; backend engineering</strong><br />
-  I build web apps and spend a questionable amount of time debugging them.
-</p>
+<picture>
+  <source media="(max-width: 600px)" srcset="./assets/stack-map-compact.svg" />
+  <img src="./assets/stack-map.svg" alt="Sanskriti Gupta, Software Developer. Interface — React.js, JavaScript, TypeScript. API and services — Java, Node.js, Express.js, REST APIs, Socket.IO, FastAPI. Data — PostgreSQL, SQL, Redis, MongoDB, PostGIS. ML and retrieval — Python, PyTorch, scikit-learn, NumPy, RAG. Delivery and tests — Git, Docker, GitHub Actions, Playwright, k6, AWS (EC2, S3)." width="100%" />
+</picture>
 
 <p align="center">
   <a href="https://sanskriti-codes.vercel.app/"><strong>Portfolio</strong></a>
@@ -13,16 +11,8 @@
   Open to software engineering opportunities
 </p>
 
-## Contribution arcade
-
-<img src="./assets/contribution-heatmap.svg?v=20261128" alt="GitHub contribution calendar for Sanskriti Gupta with an animated pixel starfighter" width="100%" />
-
 <details>
-  <summary><strong>Tech stack</strong> &nbsp; <code>cat stack.yml</code></summary>
+  <summary>Contribution arcade</summary>
 
-  - **Languages** — Java, JavaScript, TypeScript, Python
-  - **Frontend** — React, Next.js, Tailwind CSS
-  - **Backend & data** — Spring Boot, Node.js, Express, PostgreSQL, MongoDB, Redis
-  - **Delivery** — Docker, GitHub Actions, Terraform
-
+  <img src="./assets/contribution-heatmap.svg?v=20261128" alt="GitHub contribution calendar for Sanskriti Gupta with an animated starfighter" width="100%" />
 </details>

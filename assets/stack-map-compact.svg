@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="compact" width="358" height="519" viewBox="0 0 358 519" role="img" aria-labelledby="title description">
+  <title id="title">Sanskriti Gupta — Software Developer</title>
+  <desc id="description">Interface — React.js, JavaScript, TypeScript. API &amp; services — Java, Node.js, Express.js, REST APIs, Socket.IO, FastAPI. Data — PostgreSQL, SQL, Redis, MongoDB, PostGIS. ML &amp; retrieval — Python, PyTorch, scikit-learn, NumPy, RAG. Delivery &amp; tests — Git, Docker, GitHub Actions, Playwright, k6, AWS (EC2, S3).</desc>
+  <style>
+    svg {
+      --surface: #ffffff;
+      --bar: #f5f5f8;
+      --line: #dcdce6;
+      --rule: #eeeef3;
+      --ink: #24242e;
+      --muted: #565566;
+      --accent: #523897;
+      --chip: #f0ebfb;
+      --edge: #d9cdf4;
+      --rail: #ad97de;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --surface: #16171b;
+        --bar: #1c1d23;
+        --line: #363641;
+        --rule: #2a2a34;
+        --ink: #f2f1f6;
+        --muted: #b8b6c5;
+        --accent: #d2c1ff;
+        --chip: #29213b;
+        --edge: #4b3b6b;
+        --rail: #856bbb;
+      }
+    }
+    .surface { fill: var(--surface); stroke: var(--line); }
+    .bar { fill: var(--bar); }
+    .divider { stroke: var(--line); }
+    .rule { stroke: var(--rule); }
+    .rail { fill: none; stroke: var(--rail); }
+    .node { fill: var(--surface); stroke: var(--accent); stroke-width: 1.2; }
+    .name, .command, .skill { font-family: Consolas, 'Liberation Mono', monospace; }
+    .name { fill: var(--ink); font-size: 17px; font-weight: 700; letter-spacing: .45px; }
+    .role, .layer { font-family: system-ui, sans-serif; }
+    .role { fill: var(--muted); font-size: 14px; }
+    .command { fill: var(--accent); font-size: 13px; }
+    .layer { fill: var(--ink); font-size: 17px; font-weight: 650; }
+    .chip { fill: var(--chip); stroke: var(--edge); }
+    .skill { fill: var(--accent); font-weight: 600; }
+    .compact .name { font-size: 16px; }
+    .compact .layer { font-size: 15px; }
+    .compact .command { font-size: 12px; }
+  </style>
+  <defs><clipPath id="frame"><rect x=".5" y=".5" width="357" height="518" rx="11"/></clipPath></defs>
+  <rect class="surface" x=".5" y=".5" width="357" height="518" rx="11"/>
+  <g clip-path="url(#frame)">
+    <path class="bar" d="M1 1H357V69H1Z"/>
+    <path class="divider" d="M1 69H357"/>
+    <text class="name" x="17" y="29">SANSKRITI GUPTA</text>
+    <text class="role" x="17" y="52">Software Developer</text>
+    <text class="command" x="341" y="52" text-anchor="end">$ stack --list</text>
+    <path class="rail" d="M18 90V432"/>
+    <g aria-label="Interface">
+      <circle class="node" cx="18" cy="90" r="3"/>
+      <text class="layer" x="35" y="96">Interface</text>
+      <rect class="chip" x="35" y="104" width="86" height="24" rx="4"/>
+      <text class="skill" x="78" y="121" text-anchor="middle" font-size="14.5">React.js</text>
+      <rect class="chip" x="127" y="104" width="104" height="24" rx="4"/>
+      <text class="skill" x="179" y="121" text-anchor="middle" font-size="14.5">JavaScript</text>
+      <rect class="chip" x="237" y="104" width="104" height="24" rx="4"/>
+      <text class="skill" x="289" y="121" text-anchor="middle" font-size="14.5">TypeScript</text>
+    </g>
+    <path class="rule" d="M35 142H341"/>
+    <g aria-label="API &amp; services">
+      <circle class="node" cx="18" cy="153" r="3"/>
+      <text class="layer" x="35" y="159">API &amp; services</text>
+      <rect class="chip" x="35" y="167" width="51" height="24" rx="4"/>
+      <text class="skill" x="60.5" y="184" text-anchor="middle" font-size="14.5">Java</text>
+      <rect class="chip" x="92" y="167" width="77" height="24" rx="4"/>
+      <text class="skill" x="130.5" y="184" text-anchor="middle" font-size="14.5">Node.js</text>
+      <rect class="chip" x="175" y="167" width="104" height="24" rx="4"/>
+      <text class="skill" x="227" y="184" text-anchor="middle" font-size="14.5">Express.js</text>
+      <rect class="chip" x="35" y="197" width="95" height="24" rx="4"/>
+      <text class="skill" x="82.5" y="214" text-anchor="middle" font-size="14.5">REST APIs</text>
+      <rect class="chip" x="136" y="197" width="95" height="24" rx="4"/>
+      <text class="skill" x="183.5" y="214" text-anchor="middle" font-size="14.5">Socket.IO</text>
+      <rect class="chip" x="237" y="197" width="77" height="24" rx="4"/>
+      <text class="skill" x="275.5" y="214" text-anchor="middle" font-size="14.5">FastAPI</text>
+    </g>
+    <path class="rule" d="M35 235H341"/>
+    <g aria-label="Data">
+      <circle class="node" cx="18" cy="246" r="3"/>
+      <text class="layer" x="35" y="252">Data</text>
+      <rect class="chip" x="35" y="260" width="104" height="24" rx="4"/>
+      <text class="skill" x="87" y="277" text-anchor="middle" font-size="14.5">PostgreSQL</text>
+      <rect class="chip" x="145" y="260" width="42" height="24" rx="4"/>
+      <text class="skill" x="166" y="277" text-anchor="middle" font-size="14.5">SQL</text>
+      <rect class="chip" x="193" y="260" width="60" height="24" rx="4"/>
+      <text class="skill" x="223" y="277" text-anchor="middle" font-size="14.5">Redis</text>
+      <rect class="chip" x="259" y="260" width="77" height="24" rx="4"/>
+      <text class="skill" x="297.5" y="277" text-anchor="middle" font-size="14.5">MongoDB</text>
+      <rect class="chip" x="35" y="290" width="77" height="24" rx="4"/>
+      <text class="skill" x="73.5" y="307" text-anchor="middle" font-size="14.5">PostGIS</text>
+    </g>
+    <path class="rule" d="M35 328H341"/>
+    <g aria-label="ML &amp; retrieval">
+      <circle class="node" cx="18" cy="339" r="3"/>
+      <text class="layer" x="35" y="345">ML &amp; retrieval</text>
+      <rect class="chip" x="35" y="353" width="69" height="24" rx="4"/>
+      <text class="skill" x="69.5" y="370" text-anchor="middle" font-size="14.5">Python</text>
+      <rect class="chip" x="110" y="353" width="77" height="24" rx="4"/>
+      <text class="skill" x="148.5" y="370" text-anchor="middle" font-size="14.5">PyTorch</text>
+      <rect class="chip" x="193" y="353" width="122" height="24" rx="4"/>
+      <text class="skill" x="254" y="370" text-anchor="middle" font-size="14.5">scikit-learn</text>
+      <rect class="chip" x="35" y="383" width="60" height="24" rx="4"/>
+      <text class="skill" x="65" y="400" text-anchor="middle" font-size="14.5">NumPy</text>
+      <rect class="chip" x="101" y="383" width="42" height="24" rx="4"/>
+      <text class="skill" x="122" y="400" text-anchor="middle" font-size="14.5">RAG</text>
+    </g>
+    <path class="rule" d="M35 421H341"/>
+    <g aria-label="Delivery &amp; tests">
+      <circle class="node" cx="18" cy="432" r="3"/>
+      <text class="layer" x="35" y="438">Delivery &amp; tests</text>
+      <rect class="chip" x="35" y="446" width="42" height="24" rx="4"/>
+      <text class="skill" x="56" y="463" text-anchor="middle" font-size="14.5">Git</text>
+      <rect class="chip" x="83" y="446" width="69" height="24" rx="4"/>
+      <text class="skill" x="117.5" y="463" text-anchor="middle" font-size="14.5">Docker</text>
+      <rect class="chip" x="158" y="446" width="139" height="24" rx="4"/>
+      <text class="skill" x="227.5" y="463" text-anchor="middle" font-size="14.5">GitHub Actions</text>
+      <rect class="chip" x="35" y="476" width="104" height="24" rx="4"/>
+      <text class="skill" x="87" y="493" text-anchor="middle" font-size="14.5">Playwright</text>
+      <rect class="chip" x="145" y="476" width="33" height="24" rx="4"/>
+      <text class="skill" x="161.5" y="493" text-anchor="middle" font-size="14.5">k6</text>
+      <rect class="chip" x="184" y="476" width="130" height="24" rx="4"/>
+      <text class="skill" x="249" y="493" text-anchor="middle" font-size="14.5">AWS (EC2, S3)</text>
+    </g>
+  </g>
+</svg>
