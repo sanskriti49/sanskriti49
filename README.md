@@ -1,6 +1,6 @@
 <picture>
-  <source media="(max-width: 600px)" srcset="./assets/stack-map-compact.svg?v=request-flow" />
-  <img src="./assets/stack-map.svg?v=request-flow" alt="Sanskriti Gupta, Software Developer. From click to commit. Two clicks. One spot left. That’s my kind of problem. Browser — React.js, JavaScript, TypeScript. API and services — Java, Node.js, Express.js, REST APIs, Socket.IO, FastAPI. Data — PostgreSQL, SQL, Redis, MongoDB, PostGIS. Optional ML and retrieval — Python, PyTorch, scikit-learn, NumPy, RAG. Delivery and tests — Git, Docker, GitHub Actions, Playwright, k6, AWS (EC2, S3)." width="100%" />
+  <source media="(max-width: 600px)" srcset="./assets/stack-map-compact.svg?v=build-break-debug" />
+  <img src="./assets/stack-map.svg?v=build-break-debug" alt="Sanskriti Gupta, Software Developer. Build. Break. Debug. I love building stuff. And a questionable amount of time debugging it. Browser — React.js, JavaScript, TypeScript. API and services — Java, Node.js, Express.js, REST APIs, Socket.IO, FastAPI. Data — PostgreSQL, SQL, Redis, MongoDB, PostGIS. Optional ML and retrieval — Python, PyTorch, scikit-learn, NumPy, RAG. Delivery and tests — Git, Docker, GitHub Actions, Playwright, k6, AWS (EC2, S3)." width="100%" />
 </picture>
 
 <p align="center">

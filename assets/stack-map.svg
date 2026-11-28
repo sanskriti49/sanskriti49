@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" class="wide" width="938" height="489" viewBox="0 0 938 489" role="img" aria-labelledby="title description">
-  <title id="title">Sanskriti Gupta — From click to commit</title>
-  <desc id="description">Two clicks. One spot left. That’s my kind of problem. The browser connects to the API and then to the data layer. ML and retrieval can branch from the API. Browser — React.js, JavaScript, TypeScript. API &amp; services — Java, Node.js, Express.js, REST APIs, Socket.IO, FastAPI. Data — PostgreSQL, SQL, Redis, MongoDB, PostGIS. ML &amp; retrieval — Python, PyTorch, scikit-learn, NumPy, RAG. Delivery &amp; tests — Git, Docker, GitHub Actions, Playwright, k6, AWS (EC2, S3).</desc>
+  <title id="title">Sanskriti Gupta — Build. Break. Debug.</title>
+  <desc id="description">I love building stuff. And a questionable amount of time debugging it. The browser connects to the API and then to the data layer. ML and retrieval can branch from the API. Browser — React.js, JavaScript, TypeScript. API &amp; services — Java, Node.js, Express.js, REST APIs, Socket.IO, FastAPI. Data — PostgreSQL, SQL, Redis, MongoDB, PostGIS. ML &amp; retrieval — Python, PyTorch, scikit-learn, NumPy, RAG. Delivery &amp; tests — Git, Docker, GitHub Actions, Playwright, k6, AWS (EC2, S3).</desc>
   <style>
     svg {
       --paper: #fbfaf7;
@@ -69,8 +69,8 @@
     <text class="name" x="27" y="30">SANSKRITI GUPTA</text>
     <text class="role" x="193" y="30">Software Developer</text>
     <text class="command" x="911" y="30" text-anchor="end">~/sanskriti $ stack --list</text>
-    <text class="headline" x="27" y="101">From click <tspan class="headline-accent">to commit.</tspan></text>
-    <text class="aside" x="910" y="81" text-anchor="end"><tspan class="aside-lead">Two clicks. One spot left.</tspan><tspan x="910" y="102">That’s my kind of problem.</tspan></text>
+    <text class="headline" x="27" y="101">Build. Break. <tspan class="headline-accent">Debug.</tspan></text>
+    <text class="aside" x="910" y="81" text-anchor="end"><tspan class="aside-lead">I love building stuff.</tspan><tspan x="910" y="102">And a questionable amount of time debugging it.</tspan></text>
 
     <g aria-hidden="true">
       <path class="route" d="M34 151V319"/>

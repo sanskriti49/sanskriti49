@@ -7,7 +7,10 @@ const layers = {
   ml: ['ML & retrieval', ['Python', 'PyTorch', 'scikit-learn', 'NumPy', 'RAG']],
   delivery: ['Delivery & tests', ['Git', 'Docker', 'GitHub Actions', 'Playwright', 'k6', 'AWS (EC2, S3)']],
 };
-const introduction = 'Two clicks. One spot left. That’s my kind of problem.';
+const headlineStart = 'Build. Break.';
+const headlineEnd = 'Debug.';
+const lead = 'I love building stuff.';
+const punchline = 'And a questionable amount of time debugging it.';
 
 const styles = `
     svg {
@@ -116,7 +119,7 @@ function renderStackMap(compact) {
   const railX = compact ? 18 : 34;
   const columnWidth = compact ? 306 : 555;
   const panelGap = compact ? 11 : 14;
-  const browserY = compact ? 137 : 130;
+  const browserY = compact ? 155 : 130;
   const browser = renderPanel('browser', { x: panelX, y: browserY, width: columnWidth, compact });
   const apiY = browserY + browser.height + panelGap;
   const api = renderPanel('api', { x: panelX, y: apiY, width: columnWidth, compact });
@@ -140,11 +143,9 @@ function renderStackMap(compact) {
     <text class="role" x="193" y="30">Software Developer</text>
     <text class="command" x="911" y="30" text-anchor="end">~/sanskriti $ stack --list</text>`;
 
-  const story = compact
-    ? `<text class="headline" x="17" y="92">From click <tspan class="headline-accent">to commit.</tspan></text>
-    <text class="aside" x="18" y="115">${introduction}</text>`
-    : `<text class="headline" x="27" y="101">From click <tspan class="headline-accent">to commit.</tspan></text>
-    <text class="aside" x="910" y="81" text-anchor="end"><tspan class="aside-lead">Two clicks. One spot left.</tspan><tspan x="910" y="102">That’s my kind of problem.</tspan></text>`;
+  const storyX = compact ? 18 : 910;
+  const story = `<text class="headline" x="${compact ? 17 : 27}" y="${compact ? 92 : 101}">${headlineStart} <tspan class="headline-accent">${headlineEnd}</tspan></text>
+    <text class="aside" x="${storyX}" y="${compact ? 119 : 81}" text-anchor="${compact ? 'start' : 'end'}"><tspan class="aside-lead">${lead}</tspan><tspan x="${storyX}" y="${compact ? 136 : 102}">${punchline}</tspan></text>`;
 
   const mainRoute = `M${railX} ${browser.port}V${data.port}`;
   const trailingRequest = `M${railX} ${browser.port}V${data.port - 13}`;
@@ -157,8 +158,8 @@ function renderStackMap(compact) {
     : `M${branchX - 5} ${branch.port - 3}l5 3-5 3`;
 
   return `<svg xmlns="http://www.w3.org/2000/svg" class="${compact ? 'compact' : 'wide'}" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="title description">
-  <title id="title">Sanskriti Gupta — From click to commit</title>
-  <desc id="description">${introduction} The browser connects to the API and then to the data layer. ML and retrieval can branch from the API. ${Object.values(layers).map(([label, skills]) => `${escapeText(label)} — ${skills.join(', ')}.`).join(' ')}</desc>
+  <title id="title">Sanskriti Gupta — ${headlineStart} ${headlineEnd}</title>
+  <desc id="description">${lead} ${punchline} The browser connects to the API and then to the data layer. ML and retrieval can branch from the API. ${Object.values(layers).map(([label, skills]) => `${escapeText(label)} — ${skills.join(', ')}.`).join(' ')}</desc>
   <style>${styles}  </style>
   <defs><clipPath id="frame"><rect x=".5" y=".5" width="${width - 1}" height="${height - 1}" rx="14"/></clipPath></defs>
   <rect class="frame" x=".5" y=".5" width="${width - 1}" height="${height - 1}" rx="14"/>
