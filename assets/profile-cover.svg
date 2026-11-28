@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="320" viewBox="0 0 900 320" role="img" aria-labelledby="title desc">
+  <title id="title">Sanskriti Gupta</title>
+  <desc id="desc">A developer profile cover with a terminal prompt and an illustration of three connected circuit layers.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop class="background-start"/>
+      <stop class="background-end" offset="1"/>
+    </linearGradient>
+    <linearGradient id="chip" x1="0" y1="0" x2="1" y2="1">
+      <stop class="chip-start"/>
+      <stop class="chip-end" offset="1"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop class="glow-color" stop-opacity=".28"/>
+      <stop class="glow-color" offset="1" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse">
+      <circle class="grid-dot" cx="2" cy="2" r="1"/>
+    </pattern>
+    <clipPath id="panel-clip">
+      <rect x="479" y="29" width="391" height="262" rx="13"/>
+    </clipPath>
+    <style>
+      svg {
+        --background-start: #151d34; --background-end: #0b1120; --border: #394565;
+        --ink: #f3f5ff; --muted: #c2cde2; --mint: #a4f4ca; --blue: #b4bcff;
+        --panel: #0e1728; --grid: #536186; --traces: #7584ae;
+        --base: #262d52; --base-side: #151d36; --base-edge: #7e8bcc;
+        --mid: #3a4273; --mid-side: #252d52;
+        --chip-start: #c5cbff; --chip-end: #95a0f0;
+        --chip-left: #545fb2; --chip-right: #414b90; --chip-edge: #c3ccff;
+        --code: #27316c; --glow: #797cfa; --warm: #ffc69f;
+      }
+      @media (prefers-color-scheme: light) {
+        svg {
+          --background-start: #f8faff; --background-end: #eaf0ff; --border: #c0cbea;
+          --ink: #172447; --muted: #45597d; --mint: #086354; --blue: #4a50a5;
+          --panel: #edf1ff; --grid: #8797c7; --traces: #6275a6;
+          --base: #c5d1fa; --base-side: #a7b5e6; --base-edge: #6579bc;
+          --mid: #aab9ef; --mid-side: #92a2df;
+          --chip-start: #e2e6ff; --chip-end: #b2befa;
+          --chip-left: #8b9adc; --chip-right: #7587cb; --chip-edge: #687bbd;
+          --code: #354685; --glow: #9c9ef3; --warm: #a44920;
+        }
+      }
+      .background-start { stop-color: var(--background-start); }
+      .background-end { stop-color: var(--background-end); }
+      .chip-start { stop-color: var(--chip-start); }
+      .chip-end { stop-color: var(--chip-end); }
+      .glow-color { stop-color: var(--glow); }
+      .grid-dot { fill: var(--grid); opacity: .44; }
+      .frame { stroke: var(--border); }
+      .panel { fill: var(--panel); }
+      .muted { fill: var(--muted); }
+      .ink { fill: var(--ink); }
+      .mint { fill: var(--mint); }
+      .blue { fill: var(--blue); }
+      .warm { fill: var(--warm); }
+      .trace { fill: none; stroke: var(--traces); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+      .base { fill: var(--base); }
+      .base-side { fill: var(--base-side); }
+      .base-edge { stroke: var(--base-edge); }
+      .mid { fill: var(--mid); }
+      .mid-side { fill: var(--mid-side); }
+      .chip-left { fill: var(--chip-left); }
+      .chip-right { fill: var(--chip-right); }
+      .chip-edge { stroke: var(--chip-edge); }
+      .code { stroke: var(--code); }
+      .name { font: 750 79px 'Segoe UI', Arial, sans-serif; letter-spacing: -4px; }
+      .mono { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace; }
+    </style>
+  </defs>
+
+  <rect x=".5" y=".5" width="899" height="319" rx="20" fill="url(#background)" class="frame"/>
+  <rect x="479" y="29" width="391" height="262" rx="13" class="panel frame"/>
+
+  <g clip-path="url(#panel-clip)">
+    <rect x="479" y="29" width="391" height="262" fill="url(#dots)"/>
+    <ellipse cx="674" cy="157" rx="210" ry="139" fill="url(#glow)"/>
+
+    <g class="trace">
+      <path d="M518 123h26l27 13m-53 67h25l38-18m211-31 21-11h27m-62-17 27-13 23-1m-66 91 33 16h37" opacity=".73"/>
+      <path d="M499 56V49h8m336 0h8v7M499 270v7h8m336 0h8v-7" opacity=".8"/>
+      <path d="M535 247h24m-12-12v24m276-63h16m-8-8v16" opacity=".64"/>
+      <circle cx="518" cy="123" r="3"/>
+      <circle cx="840" cy="143" r="3"/>
+      <circle cx="832" cy="219" r="3"/>
+    </g>
+    <g>
+      <circle cx="518" cy="203" r="3.5" class="mint"/>
+      <circle cx="828" cy="112" r="3.5" class="warm"/>
+      <circle cx="568" cy="70" r="2.5" class="blue"/>
+      <circle cx="794" cy="68" r="2.5" class="mint"/>
+      <path d="M503 67h6m-3-3v6m326 187h6m-3-3v6" fill="none" class="base-edge"/>
+    </g>
+
+    <g stroke-width="1.35" stroke-linejoin="round">
+      <path d="M554 199l120 58 120-58v12l-120 58-120-58Z" class="base-side base-edge"/>
+      <path d="M554 199l120-58 120 58-120 58Z" class="base base-edge"/>
+      <path d="M554 169l120 58 120-58v13l-120 58-120-58Z" class="mid-side base-edge"/>
+      <path d="M554 169l120-58 120 58-120 58Z" class="mid base-edge"/>
+      <path d="M554 133l120 58 120-58v19l-120 58-120-58Z" class="chip-left chip-edge"/>
+      <path d="M674 191l120-58v19l-120 58Z" class="chip-right chip-edge"/>
+      <path d="M554 133l120-58 120 58-120 58Z" fill="url(#chip)" class="chip-edge"/>
+      <path d="M577 133l97-47 97 47-97 47Z" class="code" fill="none" stroke-opacity=".28"/>
+      <path d="M568 147l16 8m7 3 6 3m6 3 6 3m145-13 16-8m7-3 6-3M567 205l16 8m7 3 6 3m6 3 6 3m153-9 16-8" class="chip-edge" fill="none" stroke-linecap="round"/>
+    </g>
+
+    <g transform="translate(674 133) matrix(1 .48 -1 .48 0 0)" fill="none" class="code" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-20-13l-16 13 16 13m40-26 16 13-16 13m-13-31-14 36"/>
+    </g>
+    <path d="M665 250l9 4 9-4m-15-29 6 3 6-3" fill="none" class="chip-edge" stroke-linecap="round"/>
+  </g>
+
+  <path d="M52 68l8 7-8 7m13 0h10" fill="none" stroke="var(--mint)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="89" y="82" class="mono muted" font-size="19">@sanskriti49</text>
+  <text x="48" y="163" class="name ink">Sanskriti</text>
+  <text x="48" y="236" class="name mint">Gupta</text>
+  <path d="M53 263h371" class="frame" fill="none"/>
+  <path d="M53 263h60" fill="none" stroke="var(--mint)" stroke-width="2" stroke-linecap="round"/>
+</svg>
